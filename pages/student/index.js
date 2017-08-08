@@ -7,14 +7,24 @@ Page({
 	data: {
 
 	},
+	gotoReset() {
+		app.navigateTo('/pages/reset/index');
+	},
+	logOut() {
+		app.logOut();
+	},
 	onLoad(options) {
-		console.log(options);
+
 	},
 	onReady() {
 
 	},
 	onShow() {
-
+		app.getCurrentUser().then(res => {
+			this.setData({
+				user: res,
+			});
+		});
 	},
 	onHide() {
 

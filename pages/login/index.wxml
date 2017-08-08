@@ -15,6 +15,7 @@
             <view class="weui-cell__hd">密码</view>
             <view class="weui-cell__bd">
                 <input
+                    password
                     class="weui-input"
                     placeholder="请输入密码"
                     name="password"/>

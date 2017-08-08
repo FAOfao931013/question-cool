@@ -1,0 +1,23 @@
+<view>
+    <form bindsubmit="formSubmit">
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">邮箱</view>
+            <view class="weui-cell__bd">
+                <input
+                    focus
+                    class="weui-input"
+                    placeholder="请输入注册时的邮箱"
+                    name="mail"/>
+            </view>
+        </view>
+
+        <view class="btn-wrap">
+	        <button
+	        	class="weui-btn bg-orange"
+	        	type="primary"
+	        	form-type="submit">
+	        	重置密码
+	        </button>
+	    </view>
+    </form>
+</view>

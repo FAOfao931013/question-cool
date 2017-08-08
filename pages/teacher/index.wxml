@@ -1,3 +1,19 @@
 <view>
-	教师首页
+    <view class="btn-wrap">
+        <button
+        	class="weui-btn bg-orange"
+        	type="primary"
+        	bindtap="gotoReset">
+        	重置密码
+        </button>
+    </view>
+
+    <view class="btn-wrap">
+        <button
+        	class="weui-btn"
+        	type="primary"
+        	bindtap="logOut">
+        	登出
+        </button>
+    </view>
 </view>

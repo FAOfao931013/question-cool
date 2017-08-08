@@ -7,6 +7,12 @@ Page({
 	data: {
 
 	},
+	gotoReset() {
+		app.navigateTo('/pages/reset/index');
+	},
+	logOut() {
+		app.logOut();
+	},
 	onLoad(options) {
 
 	},
@@ -14,7 +20,11 @@ Page({
 
 	},
 	onShow() {
-
+		app.getCurrentUser().then(res => {
+			this.setData({
+				user: res,
+			});
+		});
 	},
 	onHide() {
 

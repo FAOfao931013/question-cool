@@ -1,6 +1,6 @@
 /*eslint-disable */
 import wxp from '../../utils/wxpApi.js';
-import Student from '../../model/student.js';
+import isEmail from '../../utils/isEmail.js';
 
 const AV = require('../../lib/av-weapp-min.js');
 const app = getApp();
@@ -30,26 +30,19 @@ Page({
 	onReachBottom() {
 
 	},
-	findStudent(number, password) {
-		const numberQuery = new AV.Query('Student');
-		numberQuery.equalTo('number', number);
+	registerUser(number, password, mail) {
+		const user = new AV.User();
 
-		numberQuery.find().then(res => {
-			if (res.length > 0) {
-				app.showToast('fail', '该用户已经存在');
-			} else {
-				this.registerStudent(number, password);
-			}
-		});
-	},
-	registerStudent(number, password) {
-		new Student({
-			number,
-			password,
-		}).save().then(res => {
+		user.setUsername(number);
+		user.setPassword(password);
+		user.setEmail(mail);
+
+		user.signUp().then(user => {
 			app.showToast('success', '注册成功').then(() => {
-				setTimeout(() => app.back(), 1000);
+				setTimeout(() => app.reLaunch('/pages/login/index'), 1000);
 			});
+		}, error => {
+			app.showToast('fail', '该用户或邮箱已存在');
 		});
 	},
 	formSubmit(e) {
@@ -63,6 +56,14 @@ Page({
 			return;
 		};
 
-		this.findStudent(e.detail.value.number, e.detail.value.password);
+		if (e.detail.value.mail == '') {
+			app.showToast('fail', '请输入邮箱');
+			return;
+		} else if (!isEmail(e.detail.value.mail)) {
+			app.showToast('fail', '请输入正确的邮箱地址');
+			return;
+		};
+
+		this.registerUser(e.detail.value.number, e.detail.value.password, e.detail.value.mail);
 	}
 })

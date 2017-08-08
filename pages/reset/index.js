@@ -10,6 +10,9 @@ Page({
     data: {
 
     },
+    formSubmit(e) {
+        app.resetPassword(e.detail.value.mail);
+    },
     onLoad(options) {
 
     },
@@ -17,17 +20,6 @@ Page({
 
     },
     onShow() {
-        // new Question({
-        //     name: 'fh',
-        //     number: '14'
-        // }).save().then(res => {
-        //     console.log(res);
-        // });
-
-        // new AV.Query('Question').find().then(res => {
-        //     console.log(res);
-        // })
-
     },
     onHide() {
 

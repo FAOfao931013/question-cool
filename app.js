@@ -8,17 +8,17 @@ Object.assign = require('./utils/object-assign');
 const AV = require('./lib/av-weapp-min.js');
 
 AV.init({
-	appId: 'AJapApvxTGRpbBYKvuwwmubx-gzGzoHsz',
-	appKey: '6dXWCrl9u0pFBsatkgnQGog0',
+    appId: 'AJapApvxTGRpbBYKvuwwmubx-gzGzoHsz',
+    appKey: '6dXWCrl9u0pFBsatkgnQGog0',
 });
 
 App({
-	globalData: {
+    globalData: {
         teacherNumber: '0101'
-	},
-	onLaunch() {
+    },
+    onLaunch() {
 
-	},
+    },
     //返回前页
     back(delta = 1) {
         return wxp.navigateBack({
@@ -43,7 +43,7 @@ App({
             url: page
         });
     },
-	//封装消息提示框
+    //封装消息提示框
     showToast(status, text) {
         switch (status) {
             case 'success':
@@ -64,5 +64,31 @@ App({
             default:
                 console.log(status);
         }
+    },
+    //获取当前用户
+    getCurrentUser() {
+        return new Promise((resolve, reject) => {
+            const currentUser = AV.User.current();
+
+            if (currentUser) {
+                resolve(currentUser);
+            } else {
+                this.navigateTo('/pages/login/index');
+            }
+        });
+    },
+    //重置密码
+    resetPassword(mail) {
+        AV.User.requestPasswordReset(mail).then(res => {
+            this.logOut();
+            this.reLaunch('/pages/login/index');
+        });
+    },
+    //登出
+    logOut() {
+        AV.User.logOut().then(res => {
+            console.log(res);
+            this.reLaunch('/pages/login/index');
+        });
     },
 })

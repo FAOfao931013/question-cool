@@ -15,9 +15,20 @@
             <view class="weui-cell__hd">您的密码</view>
             <view class="weui-cell__bd">
                 <input
+                    password
                     class="weui-input"
                     placeholder="请输入密码"
                     name="password"/>
+            </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">您的邮箱</view>
+            <view class="weui-cell__bd">
+                <input
+                    class="weui-input"
+                    placeholder="请输入邮箱"
+                    name="mail"/>
             </view>
         </view>
 

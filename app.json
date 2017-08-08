@@ -2,7 +2,7 @@
   "pages": [
     "pages/login/index",
     "pages/register/index",
-    "pages/index/index",
+    "pages/reset/index",
     "pages/student/index",
     "pages/teacher/index"
   ],
