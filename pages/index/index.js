@@ -1,11 +1,10 @@
 /*eslint-disable */
-import wxp from '../../utils/wxpApi.js'
+import wxp from '../../utils/wxpApi.js';
+import Question from '../../model/question.js';
 
 const AV = require('../../lib/av-weapp-min.js');
 
 const app = getApp();
-
-const iconPath = '../../img/';
 
 Page({
     data: {
@@ -18,15 +17,17 @@ Page({
 
     },
     onShow() {
-        const Question = AV.Object.extend('Question');
+        // new Question({
+        //     name: 'fh',
+        //     number: '14'
+        // }).save().then(res => {
+        //     console.log(res);
+        // });
 
-        const question = new Question();
+        // new AV.Query('Question').find().then(res => {
+        //     console.log(res);
+        // })
 
-        question.set('name', 'fao').save();
-
-        new AV.Query('Question').find().then(res => {
-            console.log(res);
-        });
     },
     onHide() {
 

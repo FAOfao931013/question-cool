@@ -1,2 +1,54 @@
 /**app.wxss**/
 @import "./style/weui.wxss";
+
+.btn-wrap {
+	margin: 60rpx 150rpx;
+}
+
+.btn-orange {
+	background-color: #f56729 !important;
+}
+
+.bg-blue {
+	background: #4287ff;
+}
+
+.bg-green {
+	background: #060;
+}
+
+.bg-orange {
+	background: #f60 !important;
+}
+
+.bg-red {
+	background: #ff001e !important;
+}
+
+.bg-gray {
+	background: #999 !important;
+}
+
+.bg-white {
+	background: #fff !important;
+}
+
+.color-blue {
+	color: #4287ff !important;
+}
+
+.color-red {
+	color: #f90b0b !important;
+}
+
+.color-green {
+	color: #060 !important;
+}
+
+.color-orange {
+	color: #f60 !important;
+}
+
+.color-gray {
+	color: #999 !important;
+}

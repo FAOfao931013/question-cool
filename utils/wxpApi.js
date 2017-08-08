@@ -21,6 +21,9 @@ const wxApis = [
 	'chooseImage',
 	'previewImage',
 	'uploadFile',
+	'requestPayment',
+	'reLaunch',
+	'showModal'
 ];
 
 wxApis.forEach(api => {

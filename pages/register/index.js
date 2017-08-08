@@ -30,25 +30,26 @@ Page({
 	onReachBottom() {
 
 	},
-	gotoRegister() {
-		app.navigateTo('/pages/register/index');
-	},
 	findStudent(number, password) {
 		const numberQuery = new AV.Query('Student');
-		const passwordQuery = new AV.Query('Student');
 		numberQuery.equalTo('number', number);
-		passwordQuery.equalTo('password', password);
 
-		AV.Query.and(numberQuery, passwordQuery).find().then(res => {
+		numberQuery.find().then(res => {
 			if (res.length > 0) {
-				if (number === app.globalData.teacherNumber) {
-					app.redirectTo(`/pages/teacher/index?number=${number}`);
-				} else {
-					app.redirectTo(`/pages/student/index?number=${number}`);
-				}
+				app.showToast('fail', '该用户已经存在');
 			} else {
-				app.showToast('fail', '输入的学号或密码不对');
+				this.registerStudent(number, password);
 			}
+		});
+	},
+	registerStudent(number, password) {
+		new Student({
+			number,
+			password,
+		}).save().then(res => {
+			app.showToast('success', '注册成功').then(() => {
+				setTimeout(() => app.back(), 1000);
+			});
 		});
 	},
 	formSubmit(e) {

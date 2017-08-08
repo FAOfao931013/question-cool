@@ -14,9 +14,55 @@ AV.init({
 
 App({
 	globalData: {
-		userInfo: null,
+        teacherNumber: '0101'
 	},
 	onLaunch() {
 
 	},
+    //返回前页
+    back(delta = 1) {
+        return wxp.navigateBack({
+            delta,
+        });
+    },
+    //关闭所以页面跳转
+    reLaunch(page) {
+        return wxp.reLaunch({
+            url: page,
+        });
+    },
+    //关闭当前页面跳转
+    redirectTo(page) {
+        return wxp.redirectTo({
+            url: page
+        });
+    },
+    //跳转页面
+    navigateTo(page) {
+        return wxp.navigateTo({
+            url: page
+        });
+    },
+	//封装消息提示框
+    showToast(status, text) {
+        switch (status) {
+            case 'success':
+                return wxp.showToast({
+                    title: text,
+                    icon: 'success'
+                });
+            case 'fail':
+                return wxp.showToast({
+                    title: text,
+                    image: '../../img/error.png'
+                });
+            case 'loading':
+                return wxp.showToast({
+                    title: text,
+                    icon: 'loading'
+                });
+            default:
+                console.log(status);
+        }
+    },
 })
