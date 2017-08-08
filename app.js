@@ -87,7 +87,6 @@ App({
     //登出
     logOut() {
         AV.User.logOut().then(res => {
-            console.log(res);
             this.reLaunch('/pages/login/index');
         });
     },
