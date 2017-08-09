@@ -53,19 +53,26 @@
 
     <view class="btn-wrap">
         <button
-        	class="weui-btn bg-orange"
+            class="weui-btn bg-blue"
+            type="primary"
+            bindtap="">
+            查看答题情况
+        </button>
+    </view>
+
+    <view class="reset-out-wrap weui-flex">
+        <button
+        	class="weui-btn bg-orange weui-flex__item"
         	type="primary"
         	bindtap="gotoReset">
         	重置密码
         </button>
-    </view>
 
-    <view class="btn-wrap">
         <button
-        	class="weui-btn"
-        	type="primary"
-        	bindtap="logOut">
-        	登出
+            class="weui-btn weui-flex__item"
+            type="primary"
+            bindtap="logOut">
+            登出
         </button>
     </view>
 </view>

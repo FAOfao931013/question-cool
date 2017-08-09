@@ -5,6 +5,18 @@
 	margin: 60rpx 150rpx;
 }
 
+.reset-out-wrap {
+	margin: 60rpx;
+}
+
+.reset-out-wrap .weui-btn {
+	margin-top: 0;
+}
+
+.reset-out-wrap .weui-btn:first-child {
+	margin-right: 30rpx;
+}
+
 .btn-orange {
 	background-color: #f56729 !important;
 }

@@ -1,19 +1,17 @@
 <view>
-    <view class="btn-wrap">
+    <view class="reset-out-wrap weui-flex">
         <button
-        	class="weui-btn bg-orange"
-        	type="primary"
-        	bindtap="gotoReset">
-        	重置密码
+            class="weui-btn bg-orange weui-flex__item"
+            type="primary"
+            bindtap="gotoReset">
+            重置密码
         </button>
-    </view>
 
-    <view class="btn-wrap">
         <button
-        	class="weui-btn"
-        	type="primary"
-        	bindtap="logOut">
-        	登出
+            class="weui-btn weui-flex__item"
+            type="primary"
+            bindtap="logOut">
+            登出
         </button>
     </view>
 </view>
