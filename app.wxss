@@ -10,11 +10,11 @@
 }
 
 .bg-blue {
-	background: #4287ff;
+	background: #4287ff !important;
 }
 
 .bg-green {
-	background: #060;
+	background: #060 !important;
 }
 
 .bg-orange {

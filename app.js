@@ -19,6 +19,19 @@ App({
     onLaunch() {
 
     },
+    //预览图片
+    previewImage(data) {
+        return wxp.previewImage(data);
+    },
+    //选择图片
+    chooseImage(data) {
+        const _data = Object.assign({}, {
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            count: 9,
+        }, data);
+        return wxp.chooseImage(_data);
+    },
     //返回前页
     back(delta = 1) {
         return wxp.navigateBack({
