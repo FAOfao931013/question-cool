@@ -21,7 +21,7 @@ Page({
 
 		const name = qtImage.split('//')[qtImage.split('//').length - 1];
 
-		app.uploadFile(name, qtImage).then(() => {
+		app.uploadImgFile(name, qtImage).then(() => {
 			this.delQtImg();
 		});
 	},

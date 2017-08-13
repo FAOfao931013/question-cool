@@ -78,8 +78,8 @@ App({
                 console.log(status);
         }
     },
-    //上传文件
-    uploadFile(name, localFile) {
+    //上传图片文件
+    uploadImgFile(name, localFile) {
         return new AV.File(name, {
             blob: {
                 uri: localFile,
