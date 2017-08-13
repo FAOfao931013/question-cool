@@ -34,3 +34,10 @@
 .weui-cells::before {
 	display: none;
 }
+
+.weui-uploader__input-box image.cancel-img {
+	width: 40rpx;
+	height: 40rpx;
+	left: 100%;
+	top: 0;
+}
