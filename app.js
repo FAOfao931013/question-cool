@@ -78,14 +78,14 @@ App({
                 console.log(status);
         }
     },
-    //上传图片文件
+    //上传图片
     uploadImgFile(name, localFile) {
         return new AV.File(name, {
             blob: {
                 uri: localFile,
             },
         }).save().then(file => {
-            console.log(file.url())
+            console.log(file.url());
             this.showToast('success', '题目图片上传成功');
         }).catch(error => {
             console.log(error);
