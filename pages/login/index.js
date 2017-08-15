@@ -1,8 +1,8 @@
 /*eslint-disable */
 import wxp from '../../utils/wxpApi.js';
-import Student from '../../model/student.js';
 
 const AV = require('../../lib/av-weapp-min.js');
+
 const app = getApp();
 
 Page({

@@ -1,11 +1,14 @@
 <view>
-    <form bindsubmit="formSubmit">
+    <form bindsubmit="upQuestion">
         <view class="weui-cells weui-cells_after-title cells-margin">
             <view
                 style="border:solid 1rpx #eee;"
                 class="weui-cell">
                 <view class="weui-cell__bd">
                     <textarea
+                        bindinput="onTextareaHandler"
+                        value="{{question}}"
+                        name="question"
                         class="weui-textarea"
                         placeholder="请输入题目"
                         style="height: 260rpx" />

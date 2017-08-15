@@ -3,6 +3,7 @@ import wxp from '../../utils/wxpApi.js';
 import isEmail from '../../utils/isEmail.js';
 
 const AV = require('../../lib/av-weapp-min.js');
+
 const app = getApp();
 
 Page({

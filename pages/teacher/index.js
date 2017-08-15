@@ -1,5 +1,6 @@
 /*eslint-disable */
 import wxp from '../../utils/wxpApi.js';
+import Question from '../../model/question.js';
 
 const app = getApp();
 
@@ -9,7 +10,23 @@ Page({
 		question: '',
 		qtImage: '',
 	},
-	//上传答题图片
+	onTextareaHandler(e) {
+		this.setData({
+			question: e.detail.value
+		});
+	},
+	//上传文字题目
+	upQuestion(e) {
+		new Question({
+			question: e.detail.value
+		}).save().then(res => {
+			app.showToast('success', '出题成功');
+			this.setData({
+				question: ''
+			});
+		});
+	},
+	//上传图片题目
 	uploadQtImg() {
 		const {
 			qtImage

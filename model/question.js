@@ -2,19 +2,11 @@
 const AV = require('../lib/av-weapp-min.js');
 
 class Question extends AV.Object {
-	get name() {
-		return this.get('name');
+	get question() {
+		return this.get('question');
 	}
-	set name(value) {
-		this.set('name', value);
-	}
-
-	get number() {
-		return this.get('number');
-	}
-
-	set number(value) {
-		this.set('number', value);
+	set question(value) {
+		this.set('question', value);
 	}
 }
 
