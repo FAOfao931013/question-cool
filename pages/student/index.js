@@ -1,6 +1,8 @@
 /*eslint-disable */
 import wxp from '../../utils/wxpApi.js';
 
+const AV = require('../../lib/av-weapp-min.js');
+
 const app = getApp();
 
 Page({
@@ -13,8 +15,17 @@ Page({
 	logOut() {
 		app.logOut();
 	},
-	onLoad(options) {
+	getQuestion() {
+		var question = new AV.Query('Question');
 
+		question.find().then(res => {
+			this.setData({
+				questionArr: res.map(item => item.attributes.question.question),
+			});
+		});
+	},
+	onLoad(options) {
+		this.getQuestion();
 	},
 	onReady() {
 

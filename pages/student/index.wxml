@@ -1,4 +1,9 @@
 <view>
+    <block
+        wx:for="{{questionArr}}"
+        wx:key="*this">
+        <view>{{item}}</view>
+    </block>
     <view class="reset-out-wrap weui-flex">
         <button
             class="weui-btn bg-orange weui-flex__item"
