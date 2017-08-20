@@ -81,9 +81,7 @@ Page({
 	},
 	onShow() {
 		app.getCurrentUser().then(res => {
-			this.setData({
-				user: res,
-			});
+			app.globalData.user = res;
 		});
 	},
 	onHide() {

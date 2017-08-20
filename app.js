@@ -14,7 +14,8 @@ AV.init({
 
 App({
     globalData: {
-        teacherNumber: '0101'
+        teacherNumber: '0101',
+        user: '',
     },
     onLaunch() {
 

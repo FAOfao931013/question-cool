@@ -4,7 +4,8 @@
     "pages/register/index",
     "pages/reset/index",
     "pages/student/index",
-    "pages/teacher/index"
+    "pages/teacher/index",
+    "pages/answer/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,11 +1,5 @@
 <view>
-    <block
-        wx:for="{{questionArr}}"
-        wx:key="{{item.id}}">
-        <navigator url="/pages/answer/index?id={{item.id}}">
-            <view>{{item.question}}</view>
-        </navigator>
-    </block>
+    <view>{{question}}</view>
     <view class="reset-out-wrap weui-flex">
         <button
             class="weui-btn bg-orange weui-flex__item"

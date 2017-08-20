@@ -7,38 +7,33 @@ const app = getApp();
 
 Page({
 	data: {
-
-	},
-	gotoReset() {
-		app.navigateTo('/pages/reset/index');
-	},
-	logOut() {
-		app.logOut();
+		id: '',
+		question: ''
 	},
 	getQuestion() {
+		const {
+			id
+		} = this.data;
+
 		const question = new AV.Query('Question');
 
-		question.find().then(res => {
-			console.log(res);
+		question.equalTo('objectId', id).find().then(res => {
+			console.log(res[0]);
 			this.setData({
-				questionArr: res.map(item => ({
-					id: item.id,
-					question: item.attributes.question.question
-				})),
+				question: res[0].attributes.question.question
 			});
 		});
 	},
 	onLoad(options) {
-
+		this.setData({
+			id: options.id
+		});
 	},
 	onReady() {
 
 	},
 	onShow() {
 		this.getQuestion();
-		app.getCurrentUser().then(res => {
-			app.globalData.user = res;
-		});
 	},
 	onHide() {
 
