@@ -8,7 +8,7 @@ const app = getApp();
 Page({
 	data: {
 		id: '',
-		question: ''
+		question: '',
 	},
 	getQuestion() {
 		const {
