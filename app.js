@@ -86,8 +86,7 @@ App({
                 uri: localFile,
             },
         }).save().then(file => {
-            // console.log(file.url());
-            this.showToast('success', '题目图片上传成功');
+            return file.url();
         }).catch(error => {
             console.log(error);
         });

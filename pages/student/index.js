@@ -13,7 +13,8 @@ Page({
 			time: '',
 			qts: [{
 				id: '',
-				question: ''
+				question: '',
+				type: ''
 			}]
 		}, ]
 	},
@@ -25,50 +26,59 @@ Page({
 	},
 	getQuestion() {
 		const question = new AV.Query('Question');
-		const qtImgs = new AV.Query('_File');
 
-		Promise.all([
-			question.find(),
-			qtImgs.find()
-		]).then(res => {
-			const qtArr = res[0].map(item => ({
+		question.find().then(res => {
+			const result = res.map(item => ({
 				id: item.id,
-				question: item.attributes.question.question,
-				createdAt: moment(item.createdAt).format('YYYY年M月D日')
+				question: item.attributes.question,
+				type: item.attributes.type,
+				time: moment(item.createdAt).format('YYYY年M月D日'),
+				createdAt: item.createdAt
 			}));
 
-			const qtImgs = res[1].map(item => ({
-				id: item.attributes.key,
-				question: item.attributes.url,
-				createdAt: moment(item.createdAt).format('YYYY年M月D日')
-			}));
-
-			const result = [...qtArr, ...qtImgs];
-
+			//格式化数据
 			const questions = [];
 
 			result.forEach(item => {
-				if (questions.filter(_item => _item.time == item.createdAt).length > 0) {
-					questions.forEach(qtItme => {
-						if (qtItme.time == item.createdAt) {
-							qtItme.qts.push({
+				if (questions.filter(_item => _item.time == item.time).length > 0) {
+					questions.forEach(qtitem => {
+						if (qtitem.time == item.time) {
+							qtitem.qts.push({
 								id: item.id,
-								question: item.question
+								question: item.question,
+								type: item.type,
 							});
 						}
 					});
 				} else {
 					questions.push({
-						time: item.createdAt,
+						time: item.time,
+						createdAt: item.createdAt,
 						qts: [{
 							id: item.id,
-							question: item.question
+							question: item.question,
+							type: item.type,
 						}]
 					});
 				}
 			});
 
-			console.log(questions);
+			//按照日期排序
+			questions.sort(function(a, b) {
+				return new Date(a.createdAt) < new Date(b.createdAt) ? 1 : -1;
+			});
+
+			//文字题总是在前
+			questions.forEach(item => {
+				const textArr = item.qts.filter(_item => _item.type == 'text');
+				const imageArr = item.qts.filter(_item => _item.type == 'image');
+
+				item.qts = [...textArr, ...imageArr];
+			});
+
+			this.setData({
+				questions,
+			});
 		})
 	},
 	onLoad(options) {

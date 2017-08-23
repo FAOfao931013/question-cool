@@ -18,7 +18,8 @@ Page({
 	//上传文字题目
 	upQuestion(e) {
 		new Question({
-			question: e.detail.value
+			question: e.detail.value.question,
+			type: 'text',
 		}).save().then(res => {
 			app.showToast('success', '出题成功');
 			this.setData({
@@ -38,8 +39,14 @@ Page({
 
 		const name = qtImage.split('//')[qtImage.split('//').length - 1];
 
-		app.uploadImgFile(name, qtImage).then(() => {
-			this.delQtImg();
+		app.uploadImgFile(name, qtImage).then(url => {
+			new Question({
+				question: url,
+				type: 'image',
+			}).save().then(res => {
+				app.showToast('success', '题目图片上传成功');
+				this.delQtImg();
+			});
 		});
 	},
 	//删除题目照片
