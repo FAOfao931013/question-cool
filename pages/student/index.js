@@ -90,7 +90,7 @@ Page({
 	onShow() {
 		this.getQuestion();
 		app.getCurrentUser().then(res => {
-			app.globalData.user = res;
+			app.globalData.user = res.attributes;
 		});
 	},
 	onHide() {

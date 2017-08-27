@@ -1,5 +1,73 @@
-<view>
-    <view>{{question}}</view>
+<view style="padding: 20rpx">
+    <view
+        style="margin-bottom: 20rpx;"
+        wx:if="{{type == 'text'}}">
+        {{question}}
+    </view>
+
+    <image
+        wx:if="{{type == 'image'}}"
+        style="width:320rpx;height:180rpx;margin-bottom: 20rpx;"
+        src="{{question}}"/>
+
+    <form bindsubmit="upAnswer">
+        <view class="weui-cells weui-cells_after-title cells-margin">
+            <view
+                style="border:solid 1rpx #eee;"
+                class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea
+                        bindinput="onTextareaHandler"
+                        value="{{answer}}"
+                        name="answer"
+                        class="weui-textarea"
+                        placeholder="请输入答案"
+                        style="height: 260rpx" />
+                </view>
+            </view>
+        </view>
+
+        <view class="btn-wrap">
+            <button
+                class="weui-btn bg-blue"
+                type="primary"
+                form-type='submit'>
+                提交答案
+            </button>
+        </view>
+    </form>
+
+    <view class="img-as-wrap">
+        <view class="weui-flex qt-wrap cells-margin">
+            <view
+                wx:if="{{asImg}}"
+                class="weui-uploader__input-box"
+                id="{{asImg}}"
+                bindtap="previewImage">
+                <image style="width:100%;height:100%" src="{{asImg}}" />
+                <image
+                    catchtap="delAsImg"
+                    class="cancel-img"
+                    src="{{imgSrc}}cancel.png" />
+            </view>
+
+            <view
+                wx:else
+                class="weui-uploader__input-box"
+                bindtap="chooseImage">
+                <image style="width:56rpx;height:56rpx" src="{{imgSrc}}plus.png" />
+            </view>
+        </view>
+
+        <view class="btn-wrap">
+            <button
+                class="weui-btn bg-blue"
+                type="primary"
+                bindtap="uploadAsImg">
+                提交照片答案
+            </button>
+        </view>
+    </view>
 
     <view class="reset-out-wrap weui-flex">
         <button
