@@ -1,6 +1,7 @@
 /*eslint-disable */
 import wxp from '../../utils/wxpApi.js';
 import isEmail from '../../utils/isEmail.js';
+import Users from '../../model/users.js';
 
 const AV = require('../../lib/av-weapp-min.js');
 
@@ -39,6 +40,12 @@ Page({
 		user.setEmail(mail);
 
 		user.signUp().then(user => {
+			//加入用户表
+			new Users({
+				username: number,
+				type: app.globalData.teacherNumber.includes(number) ? 'teacher' : 'student'
+			}).save();
+
 			app.showToast('success', '注册成功').then(() => {
 				setTimeout(() => app.reLaunch('/pages/login/index'), 1000);
 			});

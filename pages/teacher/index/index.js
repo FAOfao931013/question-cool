@@ -9,6 +9,9 @@ Page({
 		question: '',
 		qtImage: '',
 	},
+	gotoQuestions() {
+		app.navigateTo('/pages/teacher/questions/index');
+	},
 	onTextareaHandler(e) {
 		this.setData({
 			question: e.detail.value

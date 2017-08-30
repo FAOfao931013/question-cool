@@ -61,7 +61,7 @@
         <button
             class="weui-btn bg-blue"
             type="primary"
-            bindtap="">
+            bindtap="gotoQuestions">
             查看答题情况
         </button>
     </view>

@@ -35,7 +35,7 @@ Page({
 
 	},
 	decideGotoPage(number) {
-		if (number === app.globalData.teacherNumber) {
+		if (app.globalData.teacherNumber.includes(number)) {
 			app.redirectTo(`/pages/teacher/index/index`);
 		} else {
 			app.redirectTo(`/pages/student/index/index`);
