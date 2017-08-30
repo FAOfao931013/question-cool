@@ -1,11 +1,18 @@
 {
   "pages": [
     "pages/login/index",
+
     "pages/register/index",
+
     "pages/reset/index",
-    "pages/student/index",
-    "pages/teacher/index",
-    "pages/answer/index"
+
+    "pages/student/index/index",
+    "pages/student/answer/index",
+
+    "pages/teacher/index/index",
+    "pages/teacher/answers/index",
+    "pages/teacher/detail/index"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

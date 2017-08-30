@@ -1,14 +1,13 @@
 /*eslint-disable */
-import wxp from '../../utils/wxpApi.js';
-import Answer from '../../model/answer.js';
+import Answer from '../../../model/answer.js';
 
-const AV = require('../../lib/av-weapp-min.js');
+const AV = require('../../../lib/av-weapp-min.js');
 
 const app = getApp();
 
 Page({
 	data: {
-		imgSrc: '../../img/',
+		imgSrc: '../../../img/',
 		id: '',
 		question: '',
 		type: '',
@@ -18,11 +17,14 @@ Page({
 	//上传图片题目
 	uploadAsImg() {
 		const {
-			asImg
+			asImg,
+			id,
+			imgSrc,
 		} = this.data;
 
 		if (asImg == '') {
-			app.showToast('fail', '请选择答题图片');
+			app.showToast('fail', '请选择答题图片', imgSrc);
+			return;
 		}
 
 		const name = asImg.split('//')[asImg.split('//').length - 1];
@@ -32,8 +34,9 @@ Page({
 				answer: url,
 				username: app.globalData.user.username,
 				type: 'image',
+				questionId: id,
 			}).save().then(res => {
-				app.showToast('success', '答题图片上传成功');
+				app.showToast('success', '答题图片上传成功' , imgSrc);
 				this.delAsImg();
 			});
 		});
@@ -63,11 +66,23 @@ Page({
 	},
 	//上传文字回答
 	upAnswer(e) {
+		const {
+			id,
+			imgSrc
+		} = this.data;
+
+		if (e.detail.value.answer == '') {
+			app.showToast('fail', '请输入答案', imgSrc);
+			return;
+		}
+
 		new Answer({
 			answer: e.detail.value.answer,
+			username: app.globalData.user.username,
 			type: 'text',
+			questionId: id,
 		}).save().then(res => {
-			app.showToast('success', '答题成功');
+			app.showToast('success', '答题成功', imgSrc);
 			this.setData({
 				answer: ''
 			});

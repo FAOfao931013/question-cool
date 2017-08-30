@@ -36,9 +36,9 @@ Page({
 	},
 	decideGotoPage(number) {
 		if (number === app.globalData.teacherNumber) {
-			app.redirectTo(`/pages/teacher/index`);
+			app.redirectTo(`/pages/teacher/index/index`);
 		} else {
-			app.redirectTo(`/pages/student/index`);
+			app.redirectTo(`/pages/student/index/index`);
 		}
 	},
 	gotoRegister() {

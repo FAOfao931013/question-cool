@@ -58,7 +58,7 @@ App({
         });
     },
     //封装消息提示框
-    showToast(status, text) {
+    showToast(status, text, imgSrc = '../../img/') {
         switch (status) {
             case 'success':
                 return wxp.showToast({
@@ -68,7 +68,7 @@ App({
             case 'fail':
                 return wxp.showToast({
                     title: text,
-                    image: '../../img/error.png'
+                    image: `${imgSrc}error.png`
                 });
             case 'loading':
                 return wxp.showToast({

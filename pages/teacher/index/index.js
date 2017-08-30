@@ -1,12 +1,11 @@
 /*eslint-disable */
-import wxp from '../../utils/wxpApi.js';
-import Question from '../../model/question.js';
+import Question from '../../../model/question.js';
 
 const app = getApp();
 
 Page({
 	data: {
-		imgSrc: '../../img/',
+		imgSrc: '../../../img/',
 		question: '',
 		qtImage: '',
 	},
@@ -17,11 +16,20 @@ Page({
 	},
 	//上传文字题目
 	upQuestion(e) {
+		const {
+			imgSrc
+		} = this.data;
+
+		if (e.detail.value.question == '') {
+			app.showToast('success', '请输入问题', imgSrc);
+			return;
+		}
+
 		new Question({
 			question: e.detail.value.question,
 			type: 'text',
 		}).save().then(res => {
-			app.showToast('success', '出题成功');
+			app.showToast('success', '出题成功', imgSrc);
 			this.setData({
 				question: ''
 			});
@@ -30,11 +38,13 @@ Page({
 	//上传图片题目
 	uploadQtImg() {
 		const {
-			qtImage
+			qtImage,
+			imgSrc,
 		} = this.data;
 
 		if (qtImage == '') {
-			app.showToast('fail', '请选择题目图片');
+			app.showToast('fail', '请选择题目图片', imgSrc);
+			return;
 		}
 
 		const name = qtImage.split('//')[qtImage.split('//').length - 1];
@@ -44,7 +54,7 @@ Page({
 				question: url,
 				type: 'image',
 			}).save().then(res => {
-				app.showToast('success', '题目图片上传成功');
+				app.showToast('success', '题目图片上传成功', imgSrc);
 				this.delQtImg();
 			});
 		});

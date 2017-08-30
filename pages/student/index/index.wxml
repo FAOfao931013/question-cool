@@ -11,7 +11,7 @@
 
             <navigator
                 class="weui-cell"
-                url="/pages/answer/index?id={{qt.id}}">
+                url="/pages/student/answer/index?id={{qt.id}}">
                 <block wx:if="{{qt.type == 'text'}}">
                     {{qt.question}}
                 </block>
