@@ -10,7 +10,8 @@
     "pages/student/answer/index",
 
     "pages/teacher/index/index",
-    "pages/teacher/answers/index",
+    "pages/teacher/questions/index",
+    "pages/teacher/students/index",
     "pages/teacher/detail/index"
 
   ],
