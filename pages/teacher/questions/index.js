@@ -78,7 +78,9 @@ Page({
 		})
 	},
 	onLoad(options) {
-
+		this.setData({
+			to: options.to,
+		})
 	},
 	onReady() {
 

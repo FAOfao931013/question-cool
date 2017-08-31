@@ -57,13 +57,26 @@
         </view>
     </view>
 
+
     <view class="btn-wrap">
-        <button
-            class="weui-btn bg-blue"
-            type="primary"
-            bindtap="gotoQuestions">
-            查看答题情况
-        </button>
+        <navigator url="/pages/teacher/questions/index?to=students">
+            <button
+                class="weui-btn bg-blue"
+                type="primary">
+                查看答题情况
+            </button>
+        </navigator>
+    </view>
+
+
+    <view class="btn-wrap">
+        <navigator url="/pages/teacher/questions/index?to=edit">
+            <button
+                class="weui-btn bg-blue"
+                type="primary">
+                修改已出的问题
+            </button>
+        </navigator>
     </view>
 
     <view class="reset-out-wrap weui-flex">
