@@ -11,7 +11,9 @@ Page({
 
 	},
 	onLoad(options) {
-
+		this.setData({
+			id: options.id
+		});
 	},
 	onReady() {
 

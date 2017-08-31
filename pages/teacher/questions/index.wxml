@@ -11,7 +11,7 @@
             <navigator
                 class="weui-cell"
                 style="display:block;"
-                url="{{to == 'students' ? '/pages/teacher/students/index?id={{qt.id}}' : '/pages/teacher/edit/index'}}">
+                url="{{to == 'students' ? '/pages/teacher/students/index?id={{qt.id}}' : '/pages/teacher/edit/index?id={{qt.id}}'}}">
                 <view class="qt-wrap">
                     <block wx:if="{{qt.type == 'text'}}">
                         {{qt.question}}

@@ -6,13 +6,24 @@ const app = getApp();
 Page({
 	data: {
 		imgSrc: '../../../img/',
-		question: '',
 		qtImage: '',
 	},
-	onTextareaHandler(e) {
-		this.setData({
-			question: e.detail.value
-		});
+	//重置密码
+	gotoReset() {
+		app.navigateTo('/pages/reset/index');
+	},
+	//登出
+	logOut() {
+		app.logOut();
+	},
+	//新增问题
+	addQuestion(question, type) {
+		return new Question({
+			question,
+			type,
+			username: app.globalData.user.username,
+			name: app.globalData.user.name,
+		}).save();
 	},
 	//上传文字题目
 	upQuestion(e) {
@@ -25,16 +36,8 @@ Page({
 			return;
 		}
 
-		new Question({
-			question: e.detail.value.question,
-			type: 'text',
-			username: app.globalData.user.username,
-			name: app.globalData.user.name,
-		}).save().then(res => {
+		this.addQuestion(e.detail.value.question, 'text').then(res => {
 			app.showToast('success', '出题成功', imgSrc);
-			this.setData({
-				question: ''
-			});
 		});
 	},
 	//上传图片题目
@@ -52,12 +55,7 @@ Page({
 		const name = qtImage.split('//')[qtImage.split('//').length - 1];
 
 		app.uploadImgFile(name, qtImage).then(url => {
-			new Question({
-				question: url,
-				type: 'image',
-				username: app.globalData.user.username,
-				name: app.globalData.user.name,
-			}).save().then(res => {
+			this.addQuestion(url, 'image').then(res => {
 				app.showToast('success', '题目图片上传成功', imgSrc);
 				this.delQtImg();
 			});
@@ -85,14 +83,6 @@ Page({
 				qtImage: res.tempFilePaths[0]
 			});
 		});
-	},
-	//重置密码
-	gotoReset() {
-		app.navigateTo('/pages/reset/index');
-	},
-	//登出
-	logOut() {
-		app.logOut();
 	},
 	onLoad(options) {
 
