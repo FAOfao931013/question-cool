@@ -35,10 +35,10 @@ Page({
 
 	},
 	decideGotoPage(number) {
-		if (app.globalData.teacherNumber.includes(number)) {
-			app.redirectTo(`/pages/teacher/index/index`);
+		if (app.globalData.teacherUsername.includes(number)) {
+			app.redirectTo('/pages/teacher/index/index');
 		} else {
-			app.redirectTo(`/pages/student/index/index`);
+			app.redirectTo('/pages/student/index/index');
 		}
 	},
 	gotoRegister() {

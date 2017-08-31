@@ -14,6 +14,12 @@ Page({
 		answer: '',
 		asImg: ''
 	},
+	gotoReset() {
+		app.navigateTo('/pages/reset/index');
+	},
+	logOut() {
+		app.logOut();
+	},
 	//上传图片题目
 	uploadAsImg() {
 		const {
@@ -35,6 +41,7 @@ Page({
 				username: app.globalData.user.username,
 				type: 'image',
 				questionId: id,
+				name: app.globalData.user.name
 			}).save().then(res => {
 				app.showToast('success', '答题图片上传成功' , imgSrc);
 				this.delAsImg();
@@ -81,6 +88,7 @@ Page({
 			username: app.globalData.user.username,
 			type: 'text',
 			questionId: id,
+			name: app.globalData.user.name,
 		}).save().then(res => {
 			app.showToast('success', '答题成功', imgSrc);
 			this.setData({
@@ -102,7 +110,6 @@ Page({
 		const question = new AV.Query('Question');
 
 		question.equalTo('objectId', id).find().then(res => {
-			console.log(res[0]);
 			this.setData({
 				question: res[0].attributes.question,
 				type: res[0].attributes.type
@@ -119,6 +126,7 @@ Page({
 	},
 	onShow() {
 		this.getQuestion();
+		console.log(app.globalData.user);
 	},
 	onHide() {
 

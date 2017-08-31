@@ -32,18 +32,27 @@ Page({
 	onReachBottom() {
 
 	},
-	registerUser(number, password, mail) {
+	registerUser(userInfo) {
+		const {
+			username,
+			password,
+			mail,
+			name,
+		} = userInfo;
+
 		const user = new AV.User();
 
-		user.setUsername(number);
+		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(mail);
+		user.set('name', name);
 
 		user.signUp().then(user => {
 			//加入用户表
 			new Users({
-				username: number,
-				type: app.globalData.teacherNumber.includes(number) ? 'teacher' : 'student'
+				username,
+				type: app.globalData.teacherUsername.includes(username) ? 'teacher' : 'student',
+				name,
 			}).save();
 
 			app.showToast('success', '注册成功').then(() => {
@@ -54,24 +63,41 @@ Page({
 		});
 	},
 	formSubmit(e) {
-		if (e.detail.value.number == '') {
+		const {
+			username,
+			password,
+			mail,
+			name,
+		} = e.detail.value;
+
+		if (username == '') {
 			app.showToast('fail', '请输入学号');
 			return;
 		};
 
-		if (e.detail.value.password == '') {
+		if (password == '') {
 			app.showToast('fail', '请输入密码');
 			return;
 		};
 
-		if (e.detail.value.mail == '') {
+		if (mail == '') {
 			app.showToast('fail', '请输入邮箱');
 			return;
-		} else if (!isEmail(e.detail.value.mail)) {
+		} else if (!isEmail(mail)) {
 			app.showToast('fail', '请输入正确的邮箱地址');
 			return;
 		};
 
-		this.registerUser(e.detail.value.number, e.detail.value.password, e.detail.value.mail);
+		if (name == '') {
+			app.showToast('fail', '请输入姓名');
+			return;
+		};
+
+		this.registerUser({
+			username,
+			password,
+			mail,
+			name,
+		});
 	}
 })

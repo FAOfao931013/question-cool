@@ -21,6 +21,8 @@ Page({
 	getQuestion() {
 		const question = new AV.Query('Question');
 
+		question.equalTo('username', app.globalData.user.username);
+
 		question.find().then(res => {
 			const result = res.map(item => ({
 				id: item.id,

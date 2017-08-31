@@ -31,6 +31,8 @@ Page({
 		new Question({
 			question: e.detail.value.question,
 			type: 'text',
+			username: app.globalData.user.username,
+			name: app.globalData.user.name,
 		}).save().then(res => {
 			app.showToast('success', '出题成功', imgSrc);
 			this.setData({
@@ -56,6 +58,8 @@ Page({
 			new Question({
 				question: url,
 				type: 'image',
+				username: app.globalData.user.username,
+				name: app.globalData.user.name,
 			}).save().then(res => {
 				app.showToast('success', '题目图片上传成功', imgSrc);
 				this.delQtImg();
@@ -102,6 +106,7 @@ Page({
 	onShow() {
 		app.getCurrentUser().then(res => {
 			app.globalData.user = res.attributes;
+			console.log(app.globalData.user);
 		});
 	},
 	onHide() {

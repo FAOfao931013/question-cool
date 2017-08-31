@@ -33,7 +33,8 @@ Page({
 				question: item.attributes.question,
 				type: item.attributes.type,
 				time: moment(item.createdAt).format('YYYY年M月D日'),
-				createdAt: item.createdAt
+				createdAt: item.createdAt,
+				name: item.attributes.name,
 			}));
 
 			//格式化数据
@@ -47,6 +48,7 @@ Page({
 								id: item.id,
 								question: item.question,
 								type: item.type,
+								name: item.name,
 							});
 						}
 					});
@@ -58,6 +60,7 @@ Page({
 							id: item.id,
 							question: item.question,
 							type: item.type,
+							name: item.name,
 						}]
 					});
 				}

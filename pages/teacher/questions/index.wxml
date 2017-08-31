@@ -1,28 +1,31 @@
-<view class="weui-cells">
-    <block
-        wx:for="{{questions}}"
-        wx:key="{{item.time}}">
-        <view>{{item.time}}</view>
+<block
+    wx:for="{{questions}}"
+    wx:key="{{item.time}}">
+    <view class="weui-cells">
+        <view class="weui-cell">{{item.time}}</view>
 
         <block
             wx:for="{{item.qts}}"
             wx:for-item="qt"
             wx:key="{{qt.id}}">
-
             <navigator
                 class="weui-cell"
+                style="display:block;"
                 url="/pages/teacher/students/index">
-                <block wx:if="{{qt.type == 'text'}}">
-                    {{qt.question}}
-                </block>
+                <view>{{qt.name}}</view>
 
-                <block wx:else>
-                    <image
-                    style="width:320rpx;height:180rpx;"
-                    src="{{qt.question}}" />
-                </block>
+                <view class="qt-wrap">
+                    <block wx:if="{{qt.type == 'text'}}">
+                        {{qt.question}}
+                    </block>
+
+                    <block wx:else>
+                        <image
+                        style="width:320rpx;height:180rpx;"
+                        src="{{qt.question}}" />
+                    </block>
+                </view>
             </navigator>
         </block>
-
-    </block>
-</view>
+    </view>
+</block>
