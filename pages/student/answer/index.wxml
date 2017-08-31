@@ -17,7 +17,6 @@
                 class="weui-cell">
                 <view class="weui-cell__bd">
                     <textarea
-                        bindinput="onTextareaHandler"
                         name="answer"
                         class="weui-textarea"
                         placeholder="请输入答案"

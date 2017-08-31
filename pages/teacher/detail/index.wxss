@@ -1,0 +1,7 @@
+.img-wrap {
+	padding: 20rpx;
+}
+
+.text-wrap {
+	padding: 20rpx;
+}

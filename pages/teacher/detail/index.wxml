@@ -1,1 +1,12 @@
-<view></view>
+<block wx:if="{{answer.type == 'text'}}">
+	<view class="text-wrap">{{answer.answer}}</view>
+</block>
+
+<block wx:if="{{answer.type == 'image'}}">
+	<view
+		class="img-wrap"
+		id="{{answer.answer}}"
+        bindtap="previewImage">
+		<image style="width:100%;height:550rpx;" src="{{answer.answer}}" />
+	</view>
+</block>

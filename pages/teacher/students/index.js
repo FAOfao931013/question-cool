@@ -15,7 +15,6 @@ Page({
 		answerQuery.equalTo('questionId', this.data.id);
 
 		answerQuery.find().then(res => {
-			console.log(res);
 			this.setData({
 				students: res.map(item => ({
 					username: item.attributes.username,

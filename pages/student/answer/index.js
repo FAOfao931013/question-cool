@@ -20,34 +20,6 @@ Page({
 	logOut() {
 		app.logOut();
 	},
-	//上传图片题目
-	uploadAsImg() {
-		const {
-			asImg,
-			id,
-			imgSrc,
-		} = this.data;
-
-		if (asImg == '') {
-			app.showToast('fail', '请选择答题图片', imgSrc);
-			return;
-		}
-
-		const name = asImg.split('//')[asImg.split('//').length - 1];
-
-		app.uploadImgFile(name, asImg).then(url => {
-			new Answer({
-				answer: url,
-				username: app.globalData.user.username,
-				type: 'image',
-				questionId: id,
-				name: app.globalData.user.name
-			}).save().then(res => {
-				app.showToast('success', '答题图片上传成功' , imgSrc);
-				this.delAsImg();
-			});
-		});
-	},
 	//删除答题照片
 	delAsImg() {
 		this.setData({
@@ -71,34 +43,89 @@ Page({
 			});
 		});
 	},
-	//上传文字回答
-	upAnswer(e) {
+	//新增答案
+	addAnswer(answer, type) {
 		const {
 			id,
 			imgSrc
 		} = this.data;
 
-		if (e.detail.value.answer == '') {
+		return new Answer({
+			answer,
+			username: app.globalData.user.username,
+			type,
+			questionId: id,
+			name: app.globalData.user.name,
+		}).save();
+	},
+	//更新答案
+	updateAnswer(answer, type, id) {
+		const answerObj = AV.Object.createWithoutData('Answer', id);
+
+		answerObj.set('answer', answer);
+		answerObj.set('type', type);
+
+		return answerObj.save();
+	},
+	//答案处理函数
+	answerHandler(answer, type) {
+		const {
+			id,
+			imgSrc
+		} = this.data;
+
+		const answerQuery = new AV.Query('Answer');
+
+		answerQuery.equalTo('username', app.globalData.user.username);
+
+		answerQuery.equalTo('questionId', id);
+
+		answerQuery.find().then(res => {
+			if (res.length > 0) {
+				return this.updateAnswer(answer, type, res[0].id).then(res => {
+					app.showToast('success', '答案更新成功', imgSrc);
+				});
+			} else {
+				return this.addAnswer(answer, type).then(res => {
+					app.showToast('success', '答案上传成功', imgSrc);
+				});
+			}
+		});
+	},
+	//上传文字回答
+	upAnswer(e) {
+		const {
+			imgSrc
+		} = this.data;
+
+		const {
+			answer
+		} = e.detail.value;
+
+		if (answer == '') {
 			app.showToast('fail', '请输入答案', imgSrc);
 			return;
 		}
 
-		new Answer({
-			answer: e.detail.value.answer,
-			username: app.globalData.user.username,
-			type: 'text',
-			questionId: id,
-			name: app.globalData.user.name,
-		}).save().then(res => {
-			app.showToast('success', '答题成功', imgSrc);
-			this.setData({
-				answer: ''
-			});
-		});
+		this.answerHandler(answer, 'text');
 	},
-	onTextareaHandler(e) {
-		this.setData({
-			answer: e.detail.value
+	//上传图片题目
+	uploadAsImg() {
+		const {
+			asImg,
+			id,
+			imgSrc,
+		} = this.data;
+
+		if (asImg == '') {
+			app.showToast('fail', '请选择答题图片', imgSrc);
+			return;
+		}
+
+		const name = asImg.split('//')[asImg.split('//').length - 1];
+
+		app.uploadImgFile(name, asImg).then(url => {
+			this.answerHandler(url, 'image');
 		});
 	},
 	//获取问题详情
