@@ -106,7 +106,6 @@ Page({
 	onShow() {
 		app.getCurrentUser().then(res => {
 			app.globalData.user = res.attributes;
-			console.log(app.globalData.user);
 		});
 	},
 	onHide() {

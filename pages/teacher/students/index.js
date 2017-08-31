@@ -7,18 +7,28 @@ Page({
 	data: {
 		imgSrc: '../../../img/',
 		students: [],
+		id: '',
 	},
 	getStudents() {
-		var query = new AV.Query('Users');
+		var answerQuery = new AV.Query('Answer');
 
-		query.find().then(res => {
+		answerQuery.equalTo('questionId', this.data.id);
+
+		answerQuery.find().then(res => {
+			console.log(res);
 			this.setData({
-				students: res.filter(item => item.attributes.type == 'student')
+				students: res.map(item => ({
+					username: item.attributes.username,
+					name: item.attributes.name,
+					id: item.id,
+				})),
 			});
 		});
 	},
 	onLoad(options) {
-
+		this.setData({
+			id: options.id
+		});
 	},
 	onReady() {
 

@@ -126,7 +126,6 @@ Page({
 	},
 	onShow() {
 		this.getQuestion();
-		console.log(app.globalData.user);
 	},
 	onHide() {
 
