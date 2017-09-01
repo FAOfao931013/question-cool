@@ -56,7 +56,7 @@ Page({
 	updateAnswer(answer, type, id) {
 		const answerObj = AV.Object.createWithoutData('Answer', id);
 
-		app.showModal({
+		return app.showModal({
 			title: '修改答案',
 			content: '是否要修改当前问题的答案',
 			confirmText: '确认修改'
@@ -65,7 +65,9 @@ Page({
 				answerObj.set('answer', answer);
 				answerObj.set('type', type);
 
-				return answerObj.save();
+				answerObj.save();
+			} else {
+				throw 'noChange';
 			}
 		});
 	},
@@ -76,19 +78,22 @@ Page({
 			imgSrc
 		} = this.data;
 
-		const answerQuery = new AV.Query('Answer');
+		const queryOne = new AV.Query('Answer');
+		const queryTwo = new AV.Query('Answer');
 
-		answerQuery.equalTo('username', app.globalData.user.username);
+		queryOne.equalTo('username', app.globalData.user.username);
 
-		answerQuery.equalTo('questionId', id);
+		queryTwo.equalTo('questionId', id);
+
+		const answerQuery = AV.Query.and(queryOne, queryTwo);
 
 		answerQuery.find().then(res => {
 			if (res.length > 0) {
-				return this.updateAnswer(answer, type, res[0].id).then(res => {
+				return this.updateAnswer(answer, type, res[0].id).then(() => {
 					app.showToast('success', '答案修改成功', imgSrc);
 				});
 			} else {
-				return this.addAnswer(answer, type).then(res => {
+				return this.addAnswer(answer, type).then(() => {
 					app.showToast('success', '答案上传成功', imgSrc);
 				});
 			}

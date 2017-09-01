@@ -1,14 +1,57 @@
-<block wx:if="{{answer.type == 'text'}}">
-	<view class="text-wrap">{{answer.answer}}</view>
-</block>
+<view class="answer-wrap">
+	<block wx:if="{{answer.type == 'text'}}">
+		<view class="text-wrap">{{answer.answer}}</view>
+	</block>
 
-<block wx:if="{{answer.type == 'image'}}">
-	<view
-		class="img-wrap"
-		id="{{answer.answer}}"
-        bindtap="previewImage">
-		<image
-			style="width:100%;height:400rpx;"
-			src="{{answer.answer}}" />
-	</view>
-</block>
+	<block wx:if="{{answer.type == 'image'}}">
+		<view
+			class="img-wrap"
+			id="{{answer.answer}}"
+	        bindtap="previewImage">
+			<image
+				style="width:100%;height:400rpx;"
+				src="{{answer.answer}}" />
+		</view>
+	</block>
+</view>
+
+<view class="comment-wrap">
+	<radio-group bindchange="changeItems">
+        <label
+            class="weui-cell weui-check__label"
+            wx:for="{{checkItems}}"
+            wx:key="{{item.value}}">
+            <radio
+                color="#4287ff"
+                value="{{item.value}}"
+                checked="{{item.checked}}"/>
+
+            <view class="combo-cost">{{item.value}}</view>
+        </label>
+    </radio-group>
+</view>
+
+<form bindsubmit="upComment">
+        <view class="weui-cells weui-cells_after-title cells-margin">
+            <view
+                style="border:solid 1rpx #eee;"
+                class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea
+                        name="comment"
+                        class="weui-textarea"
+                        placeholder="请输入评价"
+                        style="height: 260rpx" />
+                </view>
+            </view>
+        </view>
+
+        <view class="btn-wrap">
+            <button
+                class="weui-btn bg-blue"
+                type="primary"
+                form-type='submit'>
+                评价
+            </button>
+        </view>
+    </form>
