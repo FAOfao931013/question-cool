@@ -32,7 +32,9 @@
 </view>
 
 <form bindsubmit="upComment">
-        <view class="weui-cells weui-cells_after-title cells-margin">
+        <view
+            style="margin-top:20rpx;"
+            class="weui-cells weui-cells_after-title cells-margin">
             <view
                 style="border:solid 1rpx #eee;"
                 class="weui-cell">
