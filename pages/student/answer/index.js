@@ -68,8 +68,6 @@ Page({
 				return answerObj.save();
 			}
 		});
-
-
 	},
 	//答案处理函数
 	answerHandler(answer, type) {

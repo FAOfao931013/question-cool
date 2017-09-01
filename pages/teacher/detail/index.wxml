@@ -7,6 +7,8 @@
 		class="img-wrap"
 		id="{{answer.answer}}"
         bindtap="previewImage">
-		<image style="width:100%;height:550rpx;" src="{{answer.answer}}" />
+		<image
+			style="width:100%;height:400rpx;"
+			src="{{answer.answer}}" />
 	</view>
 </block>
