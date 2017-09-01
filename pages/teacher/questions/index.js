@@ -16,7 +16,8 @@ Page({
 				question: '',
 				type: ''
 			}]
-		}, ]
+		}, ],
+		toUrl: ''
 	},
 	getQuestion() {
 		const question = new AV.Query('Question');
@@ -79,8 +80,8 @@ Page({
 	},
 	onLoad(options) {
 		this.setData({
-			to: options.to,
-		})
+			toUrl: options.to == 'students' ? '/pages/teacher/students/index' : '/pages/teacher/edit/index',
+		});
 	},
 	onReady() {
 
