@@ -32,7 +32,7 @@ Page({
 		} = this.data;
 
 		if (e.detail.value.question == '') {
-			app.showToast('success', '请输入问题', imgSrc);
+			app.showToast('fail', '请输入问题', imgSrc);
 			return;
 		}
 

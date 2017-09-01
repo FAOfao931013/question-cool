@@ -1,0 +1,9 @@
+.upload-pr {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.cells-margin {
+	margin: 0 60rpx;
+}

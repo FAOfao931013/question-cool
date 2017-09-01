@@ -73,7 +73,7 @@
             <button
                 class="weui-btn bg-blue"
                 type="primary">
-                修改已出的问题
+                修改或删除题目
             </button>
         </navigator>
     </view>

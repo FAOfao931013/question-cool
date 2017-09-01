@@ -14,12 +14,6 @@ Page({
 		answer: '',
 		asImg: ''
 	},
-	gotoReset() {
-		app.navigateTo('/pages/reset/index');
-	},
-	logOut() {
-		app.logOut();
-	},
 	//删除答题照片
 	delAsImg() {
 		this.setData({
@@ -62,10 +56,20 @@ Page({
 	updateAnswer(answer, type, id) {
 		const answerObj = AV.Object.createWithoutData('Answer', id);
 
-		answerObj.set('answer', answer);
-		answerObj.set('type', type);
+		app.showModal({
+			title: '修改答案',
+			content: '是否要修改当前问题的答案',
+			confirmText: '确认修改'
+		}).then(res => {
+			if (res.confirm) {
+				answerObj.set('answer', answer);
+				answerObj.set('type', type);
 
-		return answerObj.save();
+				return answerObj.save();
+			}
+		});
+
+
 	},
 	//答案处理函数
 	answerHandler(answer, type) {
@@ -83,7 +87,7 @@ Page({
 		answerQuery.find().then(res => {
 			if (res.length > 0) {
 				return this.updateAnswer(answer, type, res[0].id).then(res => {
-					app.showToast('success', '答案更新成功', imgSrc);
+					app.showToast('success', '答案修改成功', imgSrc);
 				});
 			} else {
 				return this.addAnswer(answer, type).then(res => {

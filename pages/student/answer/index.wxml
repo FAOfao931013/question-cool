@@ -5,10 +5,14 @@
         {{question}}
     </view>
 
-    <image
+    <view
         wx:if="{{type == 'image'}}"
-        style="width:320rpx;height:180rpx;margin-bottom: 20rpx;"
-        src="{{question}}"/>
+        id="{{question}}"
+        bindtap="previewImage">
+        <image
+            style="width:100%;height:400rpx;margin-bottom: 20rpx;"
+            src="{{question}}"/>
+    </view>
 
     <form bindsubmit="upAnswer">
         <view class="weui-cells weui-cells_after-title cells-margin">
@@ -65,21 +69,5 @@
                 提交照片答案
             </button>
         </view>
-    </view>
-
-    <view class="reset-out-wrap weui-flex">
-        <button
-            class="weui-btn bg-orange weui-flex__item"
-            type="primary"
-            bindtap="gotoReset">
-            重置密码
-        </button>
-
-        <button
-            class="weui-btn weui-flex__item"
-            type="primary"
-            bindtap="logOut">
-            登出
-        </button>
     </view>
 </view>

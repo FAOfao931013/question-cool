@@ -20,6 +20,10 @@ App({
     onLaunch() {
 
     },
+    //封装提示弹窗
+    showModal(data) {
+        return wxp.showModal(data);
+    },
     //预览图片
     previewImage(data) {
         return wxp.previewImage(data);
