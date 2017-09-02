@@ -8,6 +8,7 @@
 
     "pages/student/index/index",
     "pages/student/answer/index",
+    "pages/student/comment/index",
 
     "pages/teacher/index/index",
     "pages/teacher/questions/index",

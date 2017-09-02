@@ -70,4 +70,14 @@
             </button>
         </view>
     </view>
+
+    <view class="btn-wrap">
+        <navigator url="/pages/student/comment/index?id={{id}}">
+            <button
+                class="weui-btn bg-blue"
+                type="primary">
+                查看答题反馈
+            </button>
+        </navigator>
+    </view>
 </view>

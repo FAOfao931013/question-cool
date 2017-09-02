@@ -1,0 +1,13 @@
+page {
+	background: #f0eff5;
+}
+
+.weui-cells {
+	padding: 20rpx;
+}
+
+.com-style {
+	color: #8e8e93;
+	font-size: 32rpx;
+	margin-top: 20rpx;
+}
