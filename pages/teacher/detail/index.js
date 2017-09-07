@@ -129,7 +129,9 @@ Page({
 
 	},
 	onPullDownRefresh() {
-
+		this.getAnswer().then(() => {
+            wx.stopPullDownRefresh();
+        });
 	},
 	onReachBottom() {
 

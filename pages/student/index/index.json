@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "学生首页"
+	"navigationBarTitleText": "学生首页",
+	"enablePullDownRefresh": true
 }

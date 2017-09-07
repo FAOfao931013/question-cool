@@ -103,7 +103,9 @@ Page({
 
 	},
 	onPullDownRefresh() {
-
+		this.getQuestion().then(() => {
+            wx.stopPullDownRefresh();
+        });
 	},
 	onReachBottom() {
 

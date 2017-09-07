@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "回答问题"
+	"navigationBarTitleText": "回答问题",
+	"enablePullDownRefresh": true
 }

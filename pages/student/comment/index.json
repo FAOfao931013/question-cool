@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "答题反馈"
+	"navigationBarTitleText": "答题反馈",
+	"enablePullDownRefresh": true
 }

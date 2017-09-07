@@ -14,6 +14,8 @@ Page({
 
 		answerQuery.equalTo('questionId', this.data.id);
 
+		answerQuery.ascending('username');
+
 		answerQuery.find().then(res => {
 			this.setData({
 				students: res.map(item => ({
@@ -42,7 +44,9 @@ Page({
 
 	},
 	onPullDownRefresh() {
-
+		this.getStudents().then(() => {
+            wx.stopPullDownRefresh();
+        });
 	},
 	onReachBottom() {
 

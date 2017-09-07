@@ -86,7 +86,9 @@ Page({
 
 	},
 	onPullDownRefresh() {
-
+		this.getComment().then(() => {
+            wx.stopPullDownRefresh();
+        });
 	},
 	onReachBottom() {
 
