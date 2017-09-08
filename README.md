@@ -43,88 +43,88 @@
 2、[Moment.js](https://momentjs.com/)
 
 #### 第四部分 项目结构
-.
-├── app.js
-├── app.json
-├── app.wxss
-├── img
-│   ├── cancel.png
-│   ├── error.png
-│   └── plus.png
-├── lib
-│   ├── av-weapp-min.js
-│   ├── es6-promise.min.js
-│   └── moment.js
-├── model
-│   ├── answer.js
-│   ├── comment.js
-│   ├── question.js
-│   └── users.js
-├── pages
-│   ├── login
-│   │   ├── index.js
-│   │   ├── index.json
-│   │   ├── index.wxml
-│   │   └── index.wxss
-│   ├── register
-│   │   ├── index.js
-│   │   ├── index.json
-│   │   ├── index.wxml
-│   │   └── index.wxss
-│   ├── reset
-│   │   ├── index.js
-│   │   ├── index.json
-│   │   ├── index.wxml
-│   │   └── index.wxss
-│   ├── student
-│   │   ├── answer
-│   │   │   ├── index.js
-│   │   │   ├── index.json
-│   │   │   ├── index.wxml
-│   │   │   └── index.wxss
-│   │   ├── comment
-│   │   │   ├── index.js
-│   │   │   ├── index.json
-│   │   │   ├── index.wxml
-│   │   │   └── index.wxss
-│   │   └── index
-│   │       ├── index.js
-│   │       ├── index.json
-│   │       ├── index.wxml
-│   │       └── index.wxss
-│   └── teacher
-│       ├── detail
-│       │   ├── index.js
-│       │   ├── index.json
-│       │   ├── index.wxml
-│       │   └── index.wxss
-│       ├── edit
-│       │   ├── index.js
-│       │   ├── index.json
-│       │   ├── index.wxml
-│       │   └── index.wxss
-│       ├── index
-│       │   ├── index.js
-│       │   ├── index.json
-│       │   ├── index.wxml
-│       │   └── index.wxss
-│       ├── questions
-│       │   ├── index.js
-│       │   ├── index.json
-│       │   ├── index.wxml
-│       │   └── index.wxss
-│       └── students
-│           ├── index.js
-│           ├── index.json
-│           ├── index.wxml
-│           └── index.wxss
-├── style
-│   └── weui.wxss
-└── utils
-    ├── isEmail.js
-    ├── object-assign.js
-    ├── wxPromisify.js
-    └── wxpApi.js
+<p>. <br>
+├── app.js <br>
+├── app.json <br>
+├── app.wxss <br>
+├── img <br>
+│   ├── cancel.png <br>
+│   ├── error.png <br>
+│   └── plus.png <br>
+├── lib <br>
+│   ├── av-weapp-min.js <br>
+│   ├── es6-promise.min.js <br>
+│   └── moment.js <br>
+├── model <br>
+│   ├── answer.js <br>
+│   ├── comment.js <br>
+│   ├── question.js <br>
+│   └── users.js <br>
+├── pages <br>
+│   ├── login <br>
+│   │   ├── index.js <br>
+│   │   ├── index.json <br>
+│   │   ├── index.wxml <br>
+│   │   └── index.wxss <br>
+│   ├── register <br>
+│   │   ├── index.js <br>
+│   │   ├── index.json <br>
+│   │   ├── index.wxml <br>
+│   │   └── index.wxss <br>
+│   ├── reset <br>
+│   │   ├── index.js <br>
+│   │   ├── index.json <br>
+│   │   ├── index.wxml <br>
+│   │   └── index.wxss <br>
+│   ├── student <br>
+│   │   ├── answer <br>
+│   │   │   ├── index.js <br>
+│   │   │   ├── index.json <br>
+│   │   │   ├── index.wxml <br>
+│   │   │   └── index.wxss <br>
+│   │   ├── comment <br>
+│   │   │   ├── index.js <br>
+│   │   │   ├── index.json <br>
+│   │   │   ├── index.wxml <br>
+│   │   │   └── index.wxss <br>
+│   │   └── index <br>
+│   │       ├── index.js <br>
+│   │       ├── index.json <br>
+│   │       ├── index.wxml <br>
+│   │       └── index.wxss <br>
+│   └── teacher <br>
+│       ├── detail <br>
+│       │   ├── index.js <br>
+│       │   ├── index.json <br>
+│       │   ├── index.wxml <br>
+│       │   └── index.wxss <br>
+│       ├── edit <br>
+│       │   ├── index.js <br>
+│       │   ├── index.json <br>
+│       │   ├── index.wxml <br>
+│       │   └── index.wxss <br>
+│       ├── index <br>
+│       │   ├── index.js <br>
+│       │   ├── index.json <br>
+│       │   ├── index.wxml <br>
+│       │   └── index.wxss <br>
+│       ├── questions <br>
+│       │   ├── index.js <br>
+│       │   ├── index.json <br>
+│       │   ├── index.wxml <br>
+│       │   └── index.wxss <br>
+│       └── students <br>
+│           ├── index.js <br>
+│           ├── index.json <br>
+│           ├── index.wxml <br>
+│           └── index.wxss <br>
+├── style <br>
+│   └── weui.wxss <br>
+└── utils <br>
+    ├── isEmail.js <br>
+    ├── object-assign.js <br>
+    ├── wxPromisify.js <br>
+    └── wxpApi.js</p>
 
 项目目录与文件释义：
 ##### 1、小程序文件
