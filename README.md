@@ -4,8 +4,11 @@
 整个项目 基于 微信小程序+LeanCloud 进行前后端的开发。
 使用的语言为采用ES6标准的<code>Javascript</code> 。
 主要功能为让学生与老师能够进行线上的答题解疑互动操作，包括了出题、答题和反馈等功能。
-参考文档
+
+参考：
+
 1、[微信小程序开发文档](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/MINA.html)
+
 2、[LeanCloud数据存储开发指南 · JavaScript](https://leancloud.cn/docs/leanstorage_guide-js.html)
 
 ### 第二部分 后端设计与开发
@@ -19,11 +22,12 @@
 #### 3、答题部分
 只限学生能够使用的答题功能，同样可以用文字或者图片进行答题。
 #### 4、反馈部分
-只限老师能够使用的反馈功能，对于学生提交的答案进行评价与反馈，学生可以在首页查看到自己的答题反馈。
+只限老师能够使用的反馈功能，对于学生提交的答案进行评价与反馈，学生可在首页查看到自己的答题反馈。
 #### 5、文件存储
 对于上传的一系列图片进行统一存储和调用，可自行在数据库中进行管理。
 
-参考
+参考：
+
 1、[LeanCloud](https://leancloud.cn/)
 
 ### 第三部分 前端设计与开发
@@ -38,8 +42,10 @@
 #### 3、老师页面
 主要包括老师首页、出题页面、修改问题页面、查看学生列表页面和评论反馈页面。
 
-参考
+参考：
+
 1、[JavaScript Promise迷你书（中文版）](http://liubin.org/promises-book/#chapter1-what-is-promise)
+
 2、[Moment.js](https://momentjs.com/)
 
 ### 第四部分 项目结构
@@ -74,7 +80,11 @@
 <code>app.json</code>小程序公共设置文件
 <code>app.wxss</code>小程序全局样式文件
 <code>index.wxml</code>、<code>index.js</code>、<code>index.json</code>、<code>index.wxss</code>分别为各个页面的页面结构、逻辑、设置和样式文件。
-参考：[小程序目录结构](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/structure.html)
+
+参考：
+
+1、[小程序目录结构](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/structure.html)
+
 #### 2、图片目录
 <code>img</code>目录为页面所用到的图片文件目录，引用时的路径为相对路径。
 #### 3、库目录
