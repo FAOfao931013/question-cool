@@ -11,6 +11,8 @@
 
 2、[LeanCloud数据存储开发指南 · JavaScript](https://leancloud.cn/docs/leanstorage_guide-js.html)
 
+3、[在微信小程序中使用 LeanCloud](https://leancloud.cn/docs/weapp.html)
+
 ### 第二部分 后端设计与开发
 后端采用LeanCloud数据存储，特色为方便、简单和高效，并且统一了前后端语言都为<code>Javascript</code>，减少了开发的阻碍。
 后端数据主要分为五大部分：
