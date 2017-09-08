@@ -9,6 +9,36 @@ Page({
 		students: [],
 		id: '',
 	},
+	//获取评论
+	getComment(students) {
+		const {
+			id,
+		} = this.data;
+
+		const commentQuery = new AV.Query('Comment');
+
+		commentQuery.equalTo('questionId', id);
+
+		commentQuery.find().then(res => {
+			const comment = res.map(item => ({
+				username: item.attributes.username,
+				result: item.attributes.result,
+			}));
+
+			this.setData({
+				students: students.map(item => {
+					comment.forEach(_item => {
+						if (_item.username == item.username) {
+							item.isComment = true;
+							item.result = _item.result;
+						}
+					})
+
+					return item;
+				})
+			});
+		});
+	},
 	//获取学生列表
 	getStudents() {
 		var answerQuery = new AV.Query('Answer');
@@ -18,13 +48,15 @@ Page({
 		answerQuery.ascending('username');
 
 		answerQuery.find().then(res => {
-			this.setData({
-				students: res.map(item => ({
-					username: item.attributes.username,
-					name: item.attributes.name,
-					id: item.id,
-				})),
-			});
+			const students = res.map(item => ({
+				username: item.attributes.username,
+				name: item.attributes.name,
+				id: item.id,
+				isComment: false,
+				result: '',
+			}));
+
+			this.getComment(students);
 		});
 	},
 	onLoad(options) {
@@ -46,8 +78,8 @@ Page({
 	},
 	onPullDownRefresh() {
 		this.getStudents().then(() => {
-            wx.stopPullDownRefresh();
-        });
+			wx.stopPullDownRefresh();
+		});
 	},
 	onReachBottom() {
 

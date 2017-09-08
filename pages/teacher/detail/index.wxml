@@ -22,11 +22,11 @@
             wx:for="{{checkItems}}"
             wx:key="{{item.value}}">
             <radio
-                color="#4287ff"
+                color="{{item.value == '错误' ? '#f90b0b' : '#060'}}"
                 value="{{item.value}}"
                 checked="{{item.checked}}"/>
 
-            <view class="combo-cost">{{item.value}}</view>
+            <view class="combo-cost {{item.value == '错误' ? 'color-red' : 'color-green'}}">{{item.value}}</view>
         </label>
     </radio-group>
 </view>
