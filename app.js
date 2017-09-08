@@ -7,6 +7,7 @@ Object.assign = require('./utils/object-assign');
 
 const AV = require('./lib/av-weapp-min.js');
 
+//数据库信息
 AV.init({
     appId: 'AJapApvxTGRpbBYKvuwwmubx-gzGzoHsz',
     appKey: '6dXWCrl9u0pFBsatkgnQGog0',
@@ -14,7 +15,9 @@ AV.init({
 
 App({
     globalData: {
+        //老师的username
         teacherUsername: ['0101', '0102', '0103'],
+        //当前用户信息
         user: '',
     },
     onLaunch() {

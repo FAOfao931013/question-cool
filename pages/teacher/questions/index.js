@@ -19,6 +19,7 @@ Page({
 		}, ],
 		toUrl: ''
 	},
+	//获取问题列表
 	getQuestion() {
 		const question = new AV.Query('Question');
 

@@ -34,6 +34,7 @@ Page({
 	onReachBottom() {
 
 	},
+	//根据不同用户进入不同的首页
 	decideGotoPage(number) {
 		if (app.globalData.teacherUsername.includes(number)) {
 			app.redirectTo('/pages/teacher/index/index');
@@ -51,6 +52,7 @@ Page({
 			app.showToast('fail', '输入的学号或密码不对');
 		})
 	},
+	//提交表单数据
 	formSubmit(e) {
 		if (e.detail.value.number == '') {
 			app.showToast('fail', '请输入学号');

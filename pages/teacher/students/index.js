@@ -9,6 +9,7 @@ Page({
 		students: [],
 		id: '',
 	},
+	//获取学生列表
 	getStudents() {
 		var answerQuery = new AV.Query('Answer');
 

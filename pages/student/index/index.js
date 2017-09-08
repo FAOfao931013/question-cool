@@ -18,12 +18,15 @@ Page({
 			}]
 		}, ]
 	},
+	//重置密码
 	gotoReset() {
 		app.navigateTo('/pages/reset/index');
 	},
+	//登出
 	logOut() {
 		app.logOut();
 	},
+	//获取问题列表
 	getQuestion() {
 		const question = new AV.Query('Question');
 

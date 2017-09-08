@@ -45,6 +45,7 @@ Page({
 			questionId: answer.attributes.questionId,
 		}).save();
 	},
+	//上传评论反馈
 	upComment(e) {
 		const {
 			imgSrc,

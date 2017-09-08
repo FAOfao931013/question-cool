@@ -32,6 +32,7 @@ Page({
 	onReachBottom() {
 
 	},
+	//用户注册
 	registerUser(userInfo) {
 		const {
 			username,
