@@ -44,28 +44,28 @@
 
 ### 第四部分 项目结构
 <p>. <br>
-├── app.js <br>
-├── app.json <br>
-├── app.wxss <br>
-├── img <br>
-├── lib <br>
-├── model <br>
-├── pages <br>
-│   ├── login <br>
-│   ├── register <br>
-│   ├── reset <br>
-│   ├── student <br>
-│   │   ├── answer <br>
-│   │   ├── comment <br>
-│   │   └── index <br>
-│   └── teacher <br>
-│       ├── detail <br>
-│       ├── edit <br>
-│       ├── index <br>
-│       ├── questions <br>
-│       └── students <br>
-├── style <br>
-└── utils <br>
+--- app.js <br>
+--- app.json <br>
+--- app.wxss <br>
+--- img <br>
+--- lib <br>
+--- model <br>
+--- pages <br>
+------- login <br>
+------- register <br>
+------- reset <br>
+--------student <br>
+----------- answer <br>
+----------- comment <br>
+----------- index <br>
+--------teacher <br>
+----------- detail <br>
+----------- edit <br>
+----------- index <br>
+----------- questions <br>
+----------- students <br>
+--- style <br>
+--- utils <br>
 
 项目目录与文件释义：
 #### 1、小程序文件
