@@ -51,19 +51,19 @@
 · lib <br>
 · model <br>
 · pages <br>
-    · login <br>
-    · register <br>
-    · reset <br>
-    · student <br>
-        · answer <br>
-        · comment <br>
-        · index <br>
-    · teacher <br>
-        · detail <br>
-        · edit <br>
-        · index <br>
-        · questions <br>
-        · students <br>
+····· login <br>
+····· register <br>
+····· reset <br>
+····· student <br>
+········· answer <br>
+········· comment <br>
+········· index <br>
+····· teacher <br>
+········· detail <br>
+········· edit <br>
+········· index <br>
+········· questions <br>
+········· students <br>
 · style <br>
 · utils <br>
 </p>
