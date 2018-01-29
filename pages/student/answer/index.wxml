@@ -34,7 +34,7 @@
                 class="weui-btn bg-blue"
                 type="primary"
                 form-type='submit'>
-                提交答案
+                回复答案
             </button>
         </view>
     </form>
@@ -66,7 +66,7 @@
                 class="weui-btn bg-blue"
                 type="primary"
                 bindtap="uploadAsImg">
-                提交照片答案
+                回复照片答案
             </button>
         </view>
     </view>

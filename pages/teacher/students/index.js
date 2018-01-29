@@ -9,6 +9,12 @@ Page({
 		students: [],
 		id: '',
 	},
+	ascendingByUsername() {
+		this.getStudents('username');
+	},
+	ascendingByDate() {
+		this.getStudents('createdAt');
+	},
 	//获取评论
 	getComment(students) {
 		const {
@@ -40,12 +46,12 @@ Page({
 		});
 	},
 	//获取学生列表
-	getStudents() {
+	getStudents(ascend = 'username') {
 		var answerQuery = new AV.Query('Answer');
 
 		answerQuery.equalTo('questionId', this.data.id);
 
-		answerQuery.ascending('username');
+		answerQuery.ascending(ascend);
 
 		answerQuery.find().then(res => {
 			const students = res.map(item => ({

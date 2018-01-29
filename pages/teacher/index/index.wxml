@@ -19,7 +19,7 @@
                 class="weui-btn bg-blue"
                 type="primary"
                 form-type='submit'>
-                出题（文字）
+                发布题目（文字）
             </button>
         </view>
     </form>
@@ -51,7 +51,7 @@
                 class="weui-btn bg-blue"
                 type="primary"
                 bindtap="uploadQtImg">
-                出题（照片）
+                发布题目（照片）
             </button>
         </view>
     </view>
