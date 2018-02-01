@@ -13,7 +13,7 @@
                 style="display:block;"
                 url="{{toUrl}}?id={{qt.id}}">
                 <view class="qt-wrap">
-                    <block wx:if="{{qt.type == 'text'}}">
+                    <block wx:if="{{qt.type != 'image'}}">
                         {{qt.question}}
                     </block>
 

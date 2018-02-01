@@ -1,12 +1,10 @@
 <view>
     <form bindsubmit="upQuestion">
         <view class="weui-cells weui-cells_after-title cells-margin">
-            <view
-                style="border:solid 1rpx #eee;"
+            <view style="border:solid 1rpx #eee;"
                 class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea
-                        name="question"
+                    <textarea name="question"
                         class="weui-textarea"
                         placeholder="请输入题目"
                         style="height: 260rpx" />
@@ -15,8 +13,7 @@
         </view>
 
         <view class="btn-wrap">
-            <button
-                class="weui-btn bg-blue"
+            <button class="weui-btn bg-blue"
                 type="primary"
                 form-type='submit'>
                 发布题目（文字）
@@ -26,29 +23,27 @@
 
     <view class="img-qt-wrap">
         <view class="weui-flex qt-wrap cells-margin">
-            <view
-                wx:if="{{qtImage}}"
+            <view wx:if="{{qtImage}}"
                 class="weui-uploader__input-box"
                 id="{{qtImage}}"
                 bindtap="previewImage">
-                <image style="width:100%;height:100%" src="{{qtImage}}" />
-                <image
-                    catchtap="delQtImg"
+                <image style="width:100%;height:100%"
+                    src="{{qtImage}}" />
+                <image catchtap="delQtImg"
                     class="cancel-img"
                     src="{{imgSrc}}cancel.png" />
             </view>
 
-            <view
-                wx:else
+            <view wx:else
                 class="weui-uploader__input-box"
                 bindtap="chooseImage">
-                <image style="width:56rpx;height:56rpx" src="{{imgSrc}}plus.png" />
+                <image style="width:56rpx;height:56rpx"
+                    src="{{imgSrc}}plus.png" />
             </view>
         </view>
 
         <view class="btn-wrap">
-            <button
-                class="weui-btn bg-blue"
+            <button class="weui-btn bg-blue"
                 type="primary"
                 bindtap="uploadQtImg">
                 发布题目（照片）
@@ -56,22 +51,27 @@
         </view>
     </view>
 
+    <view class="btn-wrap">
+        <navigator url="/pages/teacher/choose/index">
+            <button class="weui-btn bg-blue"
+                type="primary">
+                发布选择题
+            </button>
+        </navigator>
+    </view>
 
     <view class="btn-wrap">
         <navigator url="/pages/teacher/questions/index?to=students">
-            <button
-                class="weui-btn bg-blue"
+            <button class="weui-btn bg-blue"
                 type="primary">
                 查看答题情况
             </button>
         </navigator>
     </view>
 
-
     <view class="btn-wrap">
         <navigator url="/pages/teacher/questions/index?to=edit">
-            <button
-                class="weui-btn bg-blue"
+            <button class="weui-btn bg-blue"
                 type="primary">
                 修改或删除题目
             </button>
@@ -79,15 +79,13 @@
     </view>
 
     <view class="reset-out-wrap weui-flex">
-        <button
-        	class="weui-btn bg-orange weui-flex__item"
-        	type="primary"
-        	bindtap="gotoReset">
-        	重置密码
+        <button class="weui-btn bg-orange weui-flex__item"
+            type="primary"
+            bindtap="gotoReset">
+            重置密码
         </button>
 
-        <button
-            class="weui-btn weui-flex__item"
+        <button class="weui-btn weui-flex__item"
             type="primary"
             bindtap="logOut">
             登出

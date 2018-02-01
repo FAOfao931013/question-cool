@@ -1,0 +1,37 @@
+<form bindsubmit="upQuestion">
+    <view class="weui-cells weui-cells_after-title cells-margin">
+        <view style="border:solid 1rpx #eee;"
+            class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea name="question"
+                    class="weui-textarea"
+                    placeholder="请输入题目"
+                    style="height: 260rpx" />
+            </view>
+        </view>
+    </view>
+
+
+	<view class="choose-wrap">
+		<radio-group bindchange="changeItems">
+	        <label
+	            class="weui-cell weui-check__label"
+	            wx:for="{{checkItems}}"
+	            wx:key="{{item.value}}">
+	            <radio
+	                value="{{item.value}}"
+	                checked="{{item.checked}}"/>
+
+	            <view>{{item.value}}</view>
+	        </label>
+	    </radio-group>
+	</view>
+
+    <view class="btn-wrap">
+        <button class="weui-btn bg-blue"
+            type="primary"
+            form-type='submit'>
+            发布选择题
+        </button>
+    </view>
+</form>
