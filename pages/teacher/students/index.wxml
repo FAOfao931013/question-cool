@@ -1,50 +1,48 @@
 <view>
-	<view class='weui-flex weui-cells'>
-		<view class='weui-flex__item'>
-			<button
-				style="margin:0 30rpx;"
+    <view class="weui-flex weui-cells" style="padding:20rpx 0;">
+        <view class="weui-flex__item">
+            <button style="margin:0 30rpx;"
                 class="weui-btn bg-blue"
                 type="primary"
                 bindtap="ascendingByUsername">
                 学号排序
             </button>
-		</view>
-		<view class='weui-flex__item'>
-			<button
-				style="margin:0 30rpx;"
+        </view>
+        <view class="weui-flex__item">
+            <button style="margin:0 30rpx;"
                 class="weui-btn bg-blue"
                 type="primary"
                 bindtap="ascendingByDate">
                 日期排序
             </button>
-		</view>
-	</view>
-	<block
-		wx:for="{{students}}"
-		wx:key="{{item.username}}">
-		<navigator
-	        url="/pages/teacher/detail/index?id={{item.id}}">
-			<view
-				class="weui-flex weui-cells"
-				style="text-align:center;padding:20rpx;">
-				<view class="weui-flex__item">{{item.username}}号</view>
-				<view class="weui-flex__item">{{item.name}}</view>
-			</view>
+        </view>
+    </view>
 
-			<view
-				class="weui-flex"
-				style="text-align:center;padding:20rpx;">
-				<block
-					wx:if="{{item.isComment}}">
-					<view class="weui-flex__item">已批改</view>
-					<view class="weui-flex__item {{item.result == '错误' ? 'color-red' : 'color-green'}}">{{item.result}}</view>
-				</block>
+    <view class="accuracy-wrap" wx:if="{{type == 'choose'}}">
+    	正确率：{{accuracy}}%
+    </view>
 
-				<block wx:else>
-					<view class="weui-flex__item">未批改</view>
-					<view class="weui-flex__item">{{item.result}}</view>
-				</block>
-			</view>
-		</navigator>
-	</block>
+    <block wx:for="{{students}}"
+        wx:key="{{item.username}}">
+        <view bindtap="gotoDetail" id="{{item.id}}">
+            <view class="weui-flex weui-cells"
+                style="text-align:center;padding:20rpx;">
+                <view class="weui-flex__item">{{item.username}}号</view>
+                <view class="weui-flex__item">{{item.name}}</view>
+            </view>
+
+            <view class="weui-flex"
+                style="text-align:center;padding:20rpx;">
+                <block wx:if="{{item.isComment}}">
+                    <view class="weui-flex__item">已批改</view>
+                    <view class="weui-flex__item {{item.result == '错误' ? 'color-red' : 'color-green'}}">{{item.result}}</view>
+                </block>
+
+                <block wx:else>
+                    <view class="weui-flex__item">未批改</view>
+                    <view class="weui-flex__item">{{item.result}}</view>
+                </block>
+            </view>
+        </view>
+    </block>
 </view>

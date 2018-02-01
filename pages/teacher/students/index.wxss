@@ -5,3 +5,10 @@ page {
 .weui-flex {
 	background: #fff;
 }
+
+.accuracy-wrap {
+	background: #fff;
+	text-align: center;
+	margin-top: 40rpx;
+	padding: 20rpx 0;
+}

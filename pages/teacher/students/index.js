@@ -8,12 +8,22 @@ Page({
 		imgSrc: '../../../img/',
 		students: [],
 		id: '',
+		type: '',
+		accuracy: 0,
 	},
+	//按学号排序
 	ascendingByUsername() {
 		this.getStudents('username');
 	},
+	//按日期排序
 	ascendingByDate() {
 		this.getStudents('createdAt');
+	},
+	//跳转批改详情页面
+	gotoDetail(e) {
+		if (this.data.type != 'choose') {
+			app.navigateTo(`/pages/teacher/detail/index?id=${e.currentTarget.id}`);
+		}
 	},
 	//获取评论
 	getComment(students) {
@@ -45,11 +55,35 @@ Page({
 			});
 		});
 	},
+	//自动批改
+	autoComment(answer, students) {
+		students = students.map(item => {
+			if (item.answer == answer) {
+				item.result = '正确';
+			} else {
+				item.result = '错误';
+			}
+
+			item.isComment = true;
+
+			return item;
+		});
+
+		this.setData({
+			students,
+			type: 'choose',
+			accuracy: (students.filter(item => item.result == '正确').length / students.length).toFixed(4) * 100,
+		});
+	},
 	//获取学生列表
 	getStudents(ascend = 'username') {
+		const {
+			id
+		} = this.data;
+
 		var answerQuery = new AV.Query('Answer');
 
-		answerQuery.equalTo('questionId', this.data.id);
+		answerQuery.equalTo('questionId', id);
 
 		answerQuery.ascending(ascend);
 
@@ -60,9 +94,21 @@ Page({
 				id: item.id,
 				isComment: false,
 				result: '',
+				answer: item.attributes.answer,
 			}));
 
-			this.getComment(students);
+
+			const question = new AV.Query('Question');
+
+			question.equalTo('objectId', id);
+
+			question.find().then(res => {
+				if (res[0].attributes.type == 'choose') {
+					this.autoComment(res[0].attributes.answer, students);
+				} else {
+					this.getComment(students);
+				}
+			});
 		});
 	},
 	onLoad(options) {

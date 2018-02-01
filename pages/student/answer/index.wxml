@@ -1,83 +1,103 @@
 <view style="padding: 20rpx">
-    <view
-        style="margin-bottom: 20rpx;"
-        wx:if="{{type == 'text'}}">
-        {{question}}
-    </view>
+    <block wx:if="{{type == 'choose'}}">
+        <view style="margin-bottom: 20rpx;">
+            {{question}}
+        </view>
 
-    <view
-        wx:if="{{type == 'image'}}"
-        id="{{question}}"
-        bindtap="previewImage">
-        <image
-            style="width:100%;height:400rpx;margin-bottom: 20rpx;"
-            src="{{question}}"/>
-    </view>
+        <view class="choose-wrap">
+            <radio-group bindchange="changeItems">
+                <label class="weui-cell weui-check__label"
+                    wx:for="{{checkItems}}"
+                    wx:key="{{item.value}}">
+                    <radio value="{{item.value}}"
+                        checked="{{item.checked}}" />
 
-    <form bindsubmit="upAnswer">
-        <view class="weui-cells weui-cells_after-title cells-margin">
-            <view
-                style="border:solid 1rpx #eee;"
-                class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea
-                        name="answer"
-                        class="weui-textarea"
-                        placeholder="请输入答案"
-                        style="height: 260rpx" />
-                </view>
-            </view>
+                    <view>{{item.value}}</view>
+                </label>
+            </radio-group>
         </view>
 
         <view class="btn-wrap">
-            <button
-                class="weui-btn bg-blue"
+            <button class="weui-btn bg-blue"
                 type="primary"
-                form-type='submit'>
+                bindtap='upChooseAnswer'>
                 回复答案
             </button>
         </view>
-    </form>
+    </block>
 
-    <view class="img-as-wrap">
-        <view class="weui-flex qt-wrap cells-margin">
-            <view
-                wx:if="{{asImg}}"
-                class="weui-uploader__input-box"
-                id="{{asImg}}"
-                bindtap="previewImage">
-                <image style="width:100%;height:100%" src="{{asImg}}" />
-                <image
-                    catchtap="delAsImg"
-                    class="cancel-img"
-                    src="{{imgSrc}}cancel.png" />
+    <block wx:if="{{type != 'choose'}}">
+        <view style="margin-bottom: 20rpx;"
+            wx:if="{{type == 'text'}}">
+            {{question}}
+        </view>
+
+        <view wx:if="{{type == 'image'}}"
+            id="{{question}}"
+            bindtap="previewImage">
+            <image style="width:100%;height:400rpx;margin-bottom: 20rpx;"
+                src="{{question}}" />
+        </view>
+
+        <form bindsubmit="upAnswer">
+            <view class="weui-cells weui-cells_after-title cells-margin">
+                <view style="border:solid 1rpx #eee;"
+                    class="weui-cell">
+                    <view class="weui-cell__bd">
+                        <textarea name="answer"
+                            class="weui-textarea"
+                            placeholder="请输入答案"
+                            style="height: 260rpx" />
+                    </view>
+                </view>
             </view>
 
-            <view
-                wx:else
-                class="weui-uploader__input-box"
-                bindtap="chooseImage">
-                <image style="width:56rpx;height:56rpx" src="{{imgSrc}}plus.png" />
+            <view class="btn-wrap">
+                <button class="weui-btn bg-blue"
+                    type="primary"
+                    form-type='submit'>
+                    回复答案
+                </button>
+            </view>
+        </form>
+
+        <view class="img-as-wrap">
+            <view class="weui-flex qt-wrap cells-margin">
+                <view wx:if="{{asImg}}"
+                    class="weui-uploader__input-box"
+                    id="{{asImg}}"
+                    bindtap="previewImage">
+                    <image style="width:100%;height:100%"
+                        src="{{asImg}}" />
+                    <image catchtap="delAsImg"
+                        class="cancel-img"
+                        src="{{imgSrc}}cancel.png" />
+                </view>
+
+                <view wx:else
+                    class="weui-uploader__input-box"
+                    bindtap="chooseImage">
+                    <image style="width:56rpx;height:56rpx"
+                        src="{{imgSrc}}plus.png" />
+                </view>
+            </view>
+
+            <view class="btn-wrap">
+                <button class="weui-btn bg-blue"
+                    type="primary"
+                    bindtap="uploadAsImg">
+                    回复照片答案
+                </button>
             </view>
         </view>
 
         <view class="btn-wrap">
-            <button
-                class="weui-btn bg-blue"
-                type="primary"
-                bindtap="uploadAsImg">
-                回复照片答案
-            </button>
+            <navigator url="/pages/student/comment/index?id={{id}}">
+                <button class="weui-btn bg-blue"
+                    type="primary">
+                    查看答题反馈
+                </button>
+            </navigator>
         </view>
-    </view>
-
-    <view class="btn-wrap">
-        <navigator url="/pages/student/comment/index?id={{id}}">
-            <button
-                class="weui-btn bg-blue"
-                type="primary">
-                查看答题反馈
-            </button>
-        </navigator>
-    </view>
+    </block>
 </view>

@@ -76,7 +76,7 @@ Page({
 
 			//文字题总是在前
 			questions.forEach(item => {
-				const textArr = item.qts.filter(_item => _item.type == 'text');
+				const textArr = item.qts.filter(_item => _item.type != 'image');
 				const imageArr = item.qts.filter(_item => _item.type == 'image');
 
 				item.qts = [...textArr, ...imageArr];

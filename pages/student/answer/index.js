@@ -12,7 +12,40 @@ Page({
 		question: '',
 		type: '',
 		answer: '',
-		asImg: ''
+		asImg: '',
+		checkItems: [{
+			value: 'A',
+			checked: true,
+		}, {
+			value: 'B',
+			checked: false,
+		},{
+			value: 'C',
+			checked: false,
+		},{
+			value: 'D',
+			checked: false,
+		}],
+		result: 'A',
+	},
+	//上传选择题答案
+	upChooseAnswer() {
+		this.answerHandler(this.data.result, 'choose');
+	},
+	//更改选择题答案
+	changeItems(e) {
+		const {
+			checkItems
+		} = this.data;
+
+		checkItems.forEach(item => {
+			item.checked = item.value == e.detail.value;
+		});
+
+		this.setData({
+			result: checkItems.filter(item => item.checked)[0].value,
+			checkItems,
+		});
 	},
 	//删除答题照片
 	delAsImg() {
