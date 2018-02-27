@@ -11,6 +11,7 @@
         </view>
     </view>
 
+    <view style="padding:20rpx;">选择一个正确答案</view>
 
 	<view class="choose-wrap">
 		<radio-group bindchange="changeItems">

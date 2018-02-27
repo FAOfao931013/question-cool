@@ -28,7 +28,7 @@ Page({
 		return new Question({
 			question,
 			type,
-			answer:this.data.result,
+			answer: this.data.result,
 			username: app.globalData.user.username,
 			name: app.globalData.user.name,
 		}).save();

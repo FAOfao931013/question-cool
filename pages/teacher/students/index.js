@@ -72,7 +72,7 @@ Page({
 		this.setData({
 			students,
 			type: 'choose',
-			accuracy: (students.filter(item => item.result == '正确').length / students.length).toFixed(4) * 100,
+			accuracy: students.length == 0 ? 0 : (students.filter(item => item.result == '正确').length / students.length).toFixed(4) * 100,
 		});
 	},
 	//获取学生列表
