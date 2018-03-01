@@ -7,28 +7,66 @@ const AV = require('../../../lib/av-weapp-min.js');
 
 Page({
 	data: {
-		imgSrc: '../../img/',
-		checkItems: [{
-			value: 'A',
-			checked: true,
-		}, {
-			value: 'B',
-			checked: false,
-		},{
-			value: 'C',
-			checked: false,
-		},{
-			value: 'D',
-			checked: false,
-		}],
-		result: 'A',
+		imgSrc: '../../../img/',
+		qtImage: '',
+		imageChooseAnswer: '',
+		chooseAnswer: '',
+	},
+	onInputHandler(e) {
+		this.setData({
+			imageChooseAnswer: e.detail.value
+		});
+	},
+	//上传图片题目
+	uploadQtImg() {
+		const {
+			qtImage,
+			imgSrc,
+		} = this.data;
+
+		if (qtImage == '') {
+			app.showToast('fail', '请选择题目图片', imgSrc);
+			return;
+		}
+
+		const name = qtImage.split('//')[qtImage.split('//').length - 1];
+
+		app.uploadImgFile(name, qtImage).then(url => {
+			this.addQuestion(url, 'imageChoose').then(res => {
+				app.showToast('success', '选择题图片上传成功', imgSrc);
+				this.delQtImg();
+			});
+		});
+	},
+	//删除题目照片
+	delQtImg() {
+		this.setData({
+			qtImage: ''
+		});
+	},
+	//预览题目照片
+	previewImage(e) {
+		return app.previewImage({
+			current: e.currentTarget.id,
+			urls: [e.currentTarget.id]
+		})
+	},
+	//选择题目照片
+	chooseImage() {
+		app.chooseImage({
+			count: 1
+		}).then(res => {
+			this.setData({
+				qtImage: res.tempFilePaths[0]
+			});
+		});
 	},
 	//新增问题
 	addQuestion(question, type) {
 		return new Question({
 			question,
 			type,
-			answer: this.data.result,
+			answer: type == 'imageChoose' ? this.data.imageChooseAnswer : this.data.chooseAnswer,
 			username: app.globalData.user.username,
 			name: app.globalData.user.name,
 		}).save();
@@ -38,29 +76,19 @@ Page({
 		const {
 			imgSrc
 		} = this.data;
+		console.log(e);
 
 		if (e.detail.value.question == '') {
 			app.showToast('fail', '请输入问题', imgSrc);
 			return;
 		}
 
+		this.setData({
+			chooseAnswer: e.detail.value.answer,
+		});
+
 		this.addQuestion(e.detail.value.question, 'choose').then(res => {
 			app.showToast('success', '出题成功', imgSrc);
-		});
-	},
-	//更改选择题答案
-	changeItems(e) {
-		const {
-			checkItems
-		} = this.data;
-
-		checkItems.forEach(item => {
-			item.checked = item.value == e.detail.value;
-		});
-
-		this.setData({
-			result: checkItems.filter(item => item.checked)[0].value,
-			checkItems,
 		});
 	},
 	onLoad() {
