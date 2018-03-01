@@ -19,25 +19,34 @@
     <view class="weui-cells">
         <view>我的回答:</view>
 
-        <block wx:if="{{answer.type == 'text'}}">
-            <view class="com-style">{{answer.answer}}</view>
-        </block>
+        <view wx:if="{{!answer.answer}}"
+            class="com-style">
+            暂无回答
+        </view>
 
-        <block wx:else>
-            <view id="{{answer.answer}}"
-                bindtap="previewImage">
-                <image class="com-style"
-                    style="width:100%;height:400rpx;"
-                    src="{{answer.answer}}" />
-            </view>
-        </block>
+        <view wx:else>
+            <block wx:if="{{answer.type == 'text'}}">
+                <view class="com-style">{{answer.answer}}</view>
+            </block>
+
+            <block wx:else>
+                <view id="{{answer.answer}}"
+                    bindtap="previewImage">
+                    <image class="com-style"
+                        style="width:100%;height:400rpx;"
+                        src="{{answer.answer}}" />
+                </view>
+            </block>
+        </view>
     </view>
 
     <view class="weui-cells">
         <view>老师评价:</view>
 
         <view wx:if="{{!comment.result}}"
-            class="com-style">暂无评价</view>
+            class="com-style">
+            暂无评价
+        </view>
 
         <view wx:else>
             <view class="com-style {{comment.result == '正确' ? 'color-green' : 'color-red'}}">{{comment.result}}</view>

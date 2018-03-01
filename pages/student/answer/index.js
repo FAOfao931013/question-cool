@@ -45,14 +45,21 @@ Page({
 	upChooseAnswer() {
 		const {
 			chooseAnswer,
-			imgSrc
+			imgSrc,
+			qtAnswer
 		} = this.data;
 
-		if (this.data.chooseAnswer == '') {
+		if (chooseAnswer == '') {
 			app.showToast('fail', '请填写答案', imgSrc);
-		} else {
-			this.answerHandler(chooseAnswer, 'choose');
+			return;
 		}
+
+		if (qtAnswer.length !== chooseAnswer.length) {
+			app.showToast('fail', '答案数量不对', imgSrc);
+			return;
+		}
+
+		this.answerHandler(chooseAnswer, 'choose');
 	},
 	//删除答题照片
 	delAsImg() {
