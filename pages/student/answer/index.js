@@ -13,39 +13,46 @@ Page({
 		type: '',
 		answer: '',
 		asImg: '',
-		checkItems: [{
-			value: 'A',
-			checked: true,
-		}, {
-			value: 'B',
-			checked: false,
-		},{
-			value: 'C',
-			checked: false,
-		},{
-			value: 'D',
-			checked: false,
-		}],
-		result: 'A',
+		chooseAnswer: '',
+		qtAnswer: '',
+		accuracy: 0,
+	},
+	//统计答案正确率
+	getAccuracy() {
+		const {
+			qtAnswer,
+			chooseAnswer,
+		} = this.data;
+
+		if (qtAnswer && chooseAnswer) {
+			const qtAnswerArr = qtAnswer.split('');
+			const chooseAnswerArr = chooseAnswer.split('');
+
+			const accuracy = (qtAnswerArr.filter((item, index) => item == chooseAnswerArr[index]).length / qtAnswer.length).toFixed(2) * 100;
+
+			this.setData({
+				accuracy,
+			});
+		}
+	},
+	//监听选择题答案变化
+	onChooseAnswerChangeHandler(e) {
+		this.setData({
+			chooseAnswer: e.detail.value,
+		});
 	},
 	//上传选择题答案
 	upChooseAnswer() {
-		this.answerHandler(this.data.result, 'choose');
-	},
-	//更改选择题答案
-	changeItems(e) {
 		const {
-			checkItems
+			chooseAnswer,
+			imgSrc
 		} = this.data;
 
-		checkItems.forEach(item => {
-			item.checked = item.value == e.detail.value;
-		});
-
-		this.setData({
-			result: checkItems.filter(item => item.checked)[0].value,
-			checkItems,
-		});
+		if (this.data.chooseAnswer == '') {
+			app.showToast('fail', '请填写答案', imgSrc);
+		} else {
+			this.answerHandler(chooseAnswer, 'choose');
+		}
 	},
 	//删除答题照片
 	delAsImg() {
@@ -65,6 +72,7 @@ Page({
 		app.chooseImage({
 			count: 1
 		}).then(res => {
+			console.log(res);
 			this.setData({
 				asImg: res.tempFilePaths[0]
 			});
@@ -122,12 +130,17 @@ Page({
 
 		answerQuery.find().then(res => {
 			if (res.length > 0) {
-				return this.updateAnswer(answer, type, res[0].id).then(() => {
-					app.showToast('success', '答案修改成功', imgSrc);
-				});
+				if (type == 'choose' || type == 'imageChoose') {
+					app.showToast('fail', '只能回答一次', imgSrc);
+				} else {
+					return this.updateAnswer(answer, type, res[0].id).then(() => {
+						app.showToast('success', '答案修改成功', imgSrc);
+					});
+				}
 			} else {
 				return this.addAnswer(answer, type).then(() => {
 					app.showToast('success', '答案上传成功', imgSrc);
+					this.getAccuracy();
 				});
 			}
 		});
@@ -176,10 +189,31 @@ Page({
 
 		const question = new AV.Query('Question');
 
+		const queryOne = new AV.Query('Answer');
+		const queryTwo = new AV.Query('Answer');
+
+		queryOne.equalTo('username', app.globalData.user.username);
+
+		queryTwo.equalTo('questionId', id);
+
+		const answerQuery = AV.Query.and(queryOne, queryTwo);
+
 		question.equalTo('objectId', id).find().then(res => {
 			this.setData({
 				question: res[0].attributes.question,
-				type: res[0].attributes.type
+				type: res[0].attributes.type,
+				qtAnswer: res[0].attributes.answer ? res[0].attributes.answer : '',
+			});
+
+			answerQuery.find().then(_res => {
+				if (_res.length > 0) {
+					if (_res[0].attributes.type == 'choose' || _res[0].attributes.type == 'imageChoose') {
+						this.setData({
+							chooseAnswer: _res[0].attributes.answer
+						});
+						this.getAccuracy();
+					}
+				}
 			});
 		});
 	},

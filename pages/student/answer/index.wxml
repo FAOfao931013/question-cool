@@ -1,20 +1,26 @@
 <view style="padding: 20rpx">
-    <block wx:if="{{type == 'choose'}}">
-        <view style="margin-bottom: 20rpx;">
+    <block wx:if="{{type == 'choose' || type == 'imageChoose'}}">
+        <view wx:if="{{type == 'choose'}}"
+            style="margin-bottom: 20rpx;">
             {{question}}
         </view>
 
-        <view class="choose-wrap">
-            <radio-group bindchange="changeItems">
-                <label class="weui-cell weui-check__label"
-                    wx:for="{{checkItems}}"
-                    wx:key="{{item.value}}">
-                    <radio value="{{item.value}}"
-                        checked="{{item.checked}}" />
+        <view wx:if="{{type == 'imageChoose'}}"
+            id="{{question}}"
+            bindtap="previewImage">
+            <image style="width:100%;height:400rpx;margin-bottom: 20rpx;"
+                src="{{question}}" />
+        </view>
 
-                    <view>{{item.value}}</view>
-                </label>
-            </radio-group>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input bindinput="onChooseAnswerChangeHandler"
+                        class="weui-input"
+                        placeholder="请按顺序输入选择题答案"
+                        value="{{chooseAnswer}}" />
+                </view>
+            </view>
         </view>
 
         <view class="btn-wrap">
@@ -24,9 +30,11 @@
                 回复答案
             </button>
         </view>
+
+        <view>正确率：{{accuracy}}%</view>
     </block>
 
-    <block wx:if="{{type != 'choose'}}">
+    <block wx:else>
         <view style="margin-bottom: 20rpx;"
             wx:if="{{type == 'text'}}">
             {{question}}

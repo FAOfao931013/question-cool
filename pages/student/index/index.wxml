@@ -15,11 +15,11 @@
                 <view>{{qt.name}}</view>
 
                 <view class="qt-wrap">
-                    <block wx:if="{{qt.type != 'image'}}">
+                    <block wx:if="{{qt.type == 'text' || qt.type == 'choose'}}">
                         {{qt.question}}
                     </block>
 
-                    <block wx:else>
+                    <block wx:if="{{qt.type == 'image' || qt.type == 'imageChoose'}}">
                         <image
                         style="width:320rpx;height:180rpx;"
                         src="{{qt.question}}" />

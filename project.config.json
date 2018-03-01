@@ -1,0 +1,85 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.8",
+	"appid": "wx6f009ba1607271ae",
+	"projectname": "%E7%AD%94%E9%A2%98%E9%85%B7",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
+	"miniprogramRoot": "./",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "车辆详情",
+					"pathName": "pages/car/detail/index",
+					"query": "id=2"
+				},
+				{
+					"id": -1,
+					"name": "缺油帮助",
+					"pathName": "pages/clause/fuel/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "上传违章处理凭证",
+					"pathName": "pages/violation/voucher/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "使用帮助",
+					"pathName": "pages/help/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "还车成功付款",
+					"pathName": "pages/success/return/index",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "开具发票",
+					"pathName": "pages/invoice/list/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "处理凭证",
+					"pathName": "pages/violation/voucher/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "服务网点",
+					"pathName": "pages/services/index",
+					"query": ""
+				}
+			]
+		}
+	}
+}

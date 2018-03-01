@@ -22,9 +22,14 @@ Page({
 	},
 	//获取当前回答
 	getAnswer(id) {
-		var answerQuery = new AV.Query('Answer');
+		const queryOne = new AV.Query('Answer');
+		const queryTwo = new AV.Query('Answer');
 
-		answerQuery.equalTo('objectId', id);
+		queryOne.equalTo('username', app.globalData.user.username);
+
+		queryTwo.equalTo('questionId', id);
+
+		const answerQuery = AV.Query.and(queryOne, queryTwo);
 
 		answerQuery.find().then(res => {
 			this.setData({
@@ -59,13 +64,14 @@ Page({
 
 		const commentQuery = AV.Query.and(queryOne, queryTwo);
 
+		this.getQuestion(id);
+
+		this.getAnswer(id);
+
 		commentQuery.find().then(res => {
 			this.setData({
 				comment: res[0].attributes,
 			});
-
-			this.getQuestion(res[0].attributes.questionId);
-			this.getAnswer(res[0].attributes.answerId);
 		});
 	},
 	onLoad(options) {

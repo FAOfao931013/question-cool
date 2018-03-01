@@ -19,7 +19,7 @@
                 class="weui-cell">
                 <view class="weui-cell__bd">
                     <input name="answer"
-                        class="weui-textarea"
+                        class="weui-input"
                         placeholder="请输入答案" />
                 </view>
             </view>

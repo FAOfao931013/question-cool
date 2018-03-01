@@ -7,11 +7,9 @@
         </block>
 
         <block wx:else>
-            <view
-                id="{{question.question}}"
+            <view id="{{question.question}}"
                 bindtap="previewImage">
-                <image
-                    class="com-style"
+                <image class="com-style"
                     style="width:100%;height:400rpx;"
                     src="{{question.question}}" />
             </view>
@@ -26,11 +24,9 @@
         </block>
 
         <block wx:else>
-            <view
-                id="{{answer.answer}}"
+            <view id="{{answer.answer}}"
                 bindtap="previewImage">
-                <image
-                    class="com-style"
+                <image class="com-style"
                     style="width:100%;height:400rpx;"
                     src="{{answer.answer}}" />
             </view>
@@ -40,10 +36,15 @@
     <view class="weui-cells">
         <view>老师评价:</view>
 
-        <view class="com-style {{comment.result == '正确' ? 'color-green' : 'color-red'}}">{{comment.result}}</view>
+        <view wx:if="{{!comment.result}}"
+            class="com-style">暂无评价</view>
 
-        <block wx:if="{{comment.type == 'text'}}">
-            <view class="com-style">{{comment.comment}}</view>
-        </block>
+        <view wx:else>
+            <view class="com-style {{comment.result == '正确' ? 'color-green' : 'color-red'}}">{{comment.result}}</view>
+
+            <block wx:if="{{comment.type == 'text'}}">
+                <view class="com-style">{{comment.comment}}</view>
+            </block>
+        </view>
     </view>
 </view>
