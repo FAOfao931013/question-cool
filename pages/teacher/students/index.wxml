@@ -19,7 +19,7 @@
     </view>
 
     <view class="accuracy-wrap" wx:if="{{type == 'choose'}}">
-    	正确率：{{accuracy}}%
+    	全对学生率：{{accuracy}}%
     </view>
 
     <block wx:for="{{students}}"

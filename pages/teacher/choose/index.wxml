@@ -13,7 +13,7 @@
 
     <view style="padding:40rpx;">请按照题目顺序写入答案</view>
 
-	<view class="choose-wrap">
+    <view class="choose-wrap">
         <view class="weui-cells weui-cells_after-title cells-margin">
             <view style="border:solid 1rpx #eee;"
                 class="weui-cell">
@@ -24,7 +24,7 @@
                 </view>
             </view>
         </view>
-	</view>
+    </view>
 
     <view class="btn-wrap">
         <button class="weui-btn bg-blue"
@@ -61,11 +61,11 @@
 
 <view class="choose-wrap">
     <view class="weui-cells weui-cells_after-title cells-margin">
-        <view style="border:solid 1rpx #eee;"
-            class="weui-cell">
+        <view class="weui-cell"
+            style="border:solid 1rpx #eee;">
             <view class="weui-cell__bd">
                 <input bindinput="onInputHandler"
-                    class="weui-textarea"
+                    class="weui-input"
                     placeholder="请输入答案" />
             </view>
         </view>

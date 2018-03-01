@@ -13,7 +13,8 @@
         </view>
 
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_input">
+            <view class="weui-cell weui-cell_input"
+                style="border:solid 1rpx #eee;">
                 <view class="weui-cell__bd">
                     <input bindinput="onChooseAnswerChangeHandler"
                         class="weui-input"

@@ -58,12 +58,12 @@ Page({
 	//自动批改
 	autoComment(answer, students) {
 		students = students.map(item => {
-			if (item.answer == answer) {
-				item.result = '正确';
-			} else {
-				item.result = '错误';
-			}
+			const qtAnswerArr = answer.split('');
+			const chooseAnswerArr = item.answer.split('');
 
+			const accuracy = (qtAnswerArr.filter((item, index) => item == chooseAnswerArr[index]).length / answer.length).toFixed(2) * 100;
+
+			item.result = `正确率${accuracy}%`;
 			item.isComment = true;
 
 			return item;
@@ -72,7 +72,7 @@ Page({
 		this.setData({
 			students,
 			type: 'choose',
-			accuracy: students.length == 0 ? 0 : (students.filter(item => item.result == '正确').length / students.length).toFixed(4) * 100,
+			accuracy: students.length == 0 ? 0 : (students.filter(item => item.result == '正确率100%').length / students.length).toFixed(4) * 100,
 		});
 	},
 	//获取学生列表
@@ -103,7 +103,7 @@ Page({
 			question.equalTo('objectId', id);
 
 			question.find().then(res => {
-				if (res[0].attributes.type == 'choose') {
+				if (res[0].attributes.type == 'choose' || res[0].attributes.type == 'imageChoose') {
 					this.autoComment(res[0].attributes.answer, students);
 				} else {
 					this.getComment(students);
