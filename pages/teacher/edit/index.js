@@ -10,6 +10,7 @@ Page({
 	data: {
 		imgSrc: '../../../img/',
 		qtImage: '',
+		canNotEdit: '',
 	},
 	//删除问题
 	delQuestion() {
@@ -118,6 +119,13 @@ Page({
 		const question = new AV.Query('Question');
 
 		question.equalTo('objectId', id).find().then(res => {
+			if (res[0].attributes.type == 'choose' || res[0].attributes.type == 'imageChoose') {
+				this.setData({
+					canNotEdit: true,
+				});
+				return;
+			}
+
 			if (res[0].attributes.type == 'text') {
 				this.setData({
 					question: res[0].attributes.question,

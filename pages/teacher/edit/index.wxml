@@ -1,4 +1,8 @@
-<view>
+<view wx:if="{{canNotEdit}}">
+    当前类型问题无法修改或删除
+</view>
+
+<view wx:else>
     <form bindsubmit="upQuestion">
         <view class="weui-cells weui-cells_after-title cells-margin">
             <view
