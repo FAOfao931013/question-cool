@@ -1,5 +1,12 @@
 <view wx:if="{{canNotEdit}}">
-    当前类型问题无法修改或删除
+    <view class="btn-wrap">
+        <button
+            class="weui-btn bg-blue"
+            type="primary"
+            bindtap="delQuestion">
+            删除当前题目
+        </button>
+    </view>
 </view>
 
 <view wx:else>
@@ -63,7 +70,7 @@
         </view>
     </view>
 
-     <view class="btn-wrap">
+    <view class="btn-wrap">
         <button
             class="weui-btn bg-blue"
             type="primary"
