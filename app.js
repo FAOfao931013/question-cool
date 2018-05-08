@@ -16,7 +16,7 @@ AV.init({
 App({
     globalData: {
         //老师的username
-        teacherUsername: ['0101', '0102', '0103'],
+        teacherUsername: ['0101', '0102', '0103', '0104'],
         //当前用户信息
         user: '',
     },

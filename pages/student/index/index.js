@@ -27,10 +27,14 @@ Page({
 		app.logOut();
 	},
 	//获取问题列表
-	getQuestion() {
+	getQuestion(stu) {
 		const question = new AV.Query('Question');
 
 		question.find().then(res => {
+			const stuTeacherArr = stu.teacherItems.map(item => item.value);
+
+			res = res.filter(item => stuTeacherArr.includes(item.attributes.username));
+
 			const result = res.map(item => ({
 				id: item.id,
 				question: item.attributes.question,
@@ -94,9 +98,14 @@ Page({
 
 	},
 	onShow() {
-		this.getQuestion();
 		app.getCurrentUser().then(res => {
-			app.globalData.user = res.attributes;
+			const stuQuery = new AV.Query('Student');
+
+			stuQuery.equalTo('username', res.attributes.username).find().then(res => {
+				app.globalData.user = res[0].attributes;
+				this.getQuestion(res[0].attributes);
+			});
+
 		});
 	},
 	onHide() {
@@ -107,8 +116,8 @@ Page({
 	},
 	onPullDownRefresh() {
 		this.getQuestion().then(() => {
-            wx.stopPullDownRefresh();
-        });
+			wx.stopPullDownRefresh();
+		});
 	},
 	onReachBottom() {
 

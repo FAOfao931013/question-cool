@@ -88,26 +88,40 @@ Page({
 		answerQuery.ascending(ascend);
 
 		answerQuery.find().then(res => {
-			const students = res.map(item => ({
-				username: item.attributes.username,
-				name: item.attributes.name,
-				id: item.id,
-				isComment: false,
-				result: '',
-				answer: item.attributes.answer,
-			}));
+			const stuQuery = new AV.Query('Student');
+
+			stuQuery.find().then(_res => {
+				let students = res.map(item => ({
+					username: item.attributes.username,
+					name: item.attributes.name,
+					id: item.id,
+					isComment: false,
+					result: '',
+					answer: item.attributes.answer,
+				}));
 
 
-			const question = new AV.Query('Question');
+				students.forEach(item => {
+					_res.map(_item => {
+						if (item.username == _item.attributes.username) {
+							item.teacherItems = _item.attributes.teacherItems;
+						}
+					})
+				});
 
-			question.equalTo('objectId', id);
+				students = students.filter(item => item.teacherItems.map(i => i.value).includes(app.globalData.user.username));
 
-			question.find().then(res => {
-				if (res[0].attributes.type == 'choose' || res[0].attributes.type == 'imageChoose') {
-					this.autoComment(res[0].attributes.answer, students);
-				} else {
-					this.getComment(students);
-				}
+				const question = new AV.Query('Question');
+
+				question.equalTo('objectId', id);
+
+				question.find().then(res => {
+					if (res[0].attributes.type == 'choose' || res[0].attributes.type == 'imageChoose') {
+						this.autoComment(res[0].attributes.answer, students);
+					} else {
+						this.getComment(students);
+					}
+				});
 			});
 		});
 	},
