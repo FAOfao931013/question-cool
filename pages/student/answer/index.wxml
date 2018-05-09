@@ -1,7 +1,10 @@
 <view style="padding: 20rpx">
     <block wx:if="{{type == 'choose' || type == 'imageChoose'}}">
+        <view wx:if="{{countdown != ''}}">倒计时:{{countdown}}</view>
+        <view wx:if="{{countdown == ''}}">已截止答题</view>
+
         <view wx:if="{{type == 'choose'}}"
-            style="margin-bottom: 20rpx;">
+            style="margin-bottom: 20rpx;margin-top:20rpx;">
             {{question}}
         </view>
 
@@ -26,6 +29,7 @@
 
         <view class="btn-wrap">
             <button class="weui-btn bg-blue"
+                disabled="{{countdown == ''}}"
                 type="primary"
                 bindtap='upChooseAnswer'>
                 回复答案

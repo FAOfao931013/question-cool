@@ -1,5 +1,6 @@
 /*eslint-disable */
 import Answer from '../../../model/answer.js';
+import countdown from '../../../utils/countdown.js';
 
 const AV = require('../../../lib/av-weapp-min.js');
 
@@ -16,6 +17,7 @@ Page({
 		chooseAnswer: '',
 		qtAnswer: '',
 		accuracy: 0,
+		countdown: ''
 	},
 	//统计答案正确率
 	getAccuracy() {
@@ -206,6 +208,22 @@ Page({
 		const answerQuery = AV.Query.and(queryOne, queryTwo);
 
 		question.equalTo('objectId', id).find().then(res => {
+			console.log(res);
+
+			if (res[0].attributes.endDate) {
+				this.timer = countdown(res[0].attributes.endDate, countdown => {
+					if (countdown) {
+						this.setData({
+							countdown,
+						});
+					} else {
+						this.setData({
+							countdown: '',
+						})
+					}
+				});
+			}
+
 			this.setData({
 				question: res[0].attributes.question,
 				type: res[0].attributes.type,
@@ -236,10 +254,10 @@ Page({
 		this.getQuestion();
 	},
 	onHide() {
-
+    clearInterval(this.timer);
 	},
 	onUnload() {
-
+    clearInterval(this.timer);
 	},
 	onPullDownRefresh() {
 		this.getQuestion().then(() => {

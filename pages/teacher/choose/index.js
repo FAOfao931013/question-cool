@@ -1,5 +1,6 @@
 /*eslint-disable */
 import Question from '../../../model/question.js';
+import moment from '../../../lib/moment.js';
 
 const app = getApp();
 
@@ -11,6 +12,12 @@ Page({
 		qtImage: '',
 		imageChooseAnswer: '',
 		chooseAnswer: '',
+		qtTime: ''
+	},
+	onTimeHandler(e) {
+		this.setData({
+			qtTime: e.detail.value
+		});
 	},
 	onInputHandler(e) {
 		this.setData({
@@ -63,12 +70,25 @@ Page({
 	},
 	//新增问题
 	addQuestion(question, type) {
+		const {
+			qtTime,
+			imgSrc
+		} = this.data;
+
+		if (qtTime == '') {
+			app.showToast('fail', '请输入答题时长', imgSrc);
+			return;
+		}
+
+		const endDate = moment().add(qtTime, 'm').format('YYYY-MM-DD HH:mm:ss');
+
 		return new Question({
 			question,
 			type,
 			answer: type == 'imageChoose' ? this.data.imageChooseAnswer : this.data.chooseAnswer,
 			username: app.globalData.user.username,
 			name: app.globalData.user.name,
+			endDate,
 		}).save();
 	},
 	//上传选择题和答案题目
