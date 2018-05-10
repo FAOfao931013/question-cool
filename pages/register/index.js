@@ -135,6 +135,13 @@ Page({
 			return;
 		};
 
+		if (!app.globalData.teacherUsername.includes(username)) {
+			if (username.length != 13) {
+				app.showToast('fail', '请输入正确的学号');
+				return;
+			}
+		}
+
 		if (password == '') {
 			app.showToast('fail', '请输入密码');
 			return;
