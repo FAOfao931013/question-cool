@@ -56,6 +56,7 @@ Page({
 								question: item.question,
 								type: item.type,
 								name: item.name,
+								createdAt: item.createdAt,
 							});
 						}
 					});
@@ -68,6 +69,7 @@ Page({
 							question: item.question,
 							type: item.type,
 							name: item.name,
+							createdAt: item.createdAt,
 						}]
 					});
 				}
@@ -78,12 +80,11 @@ Page({
 				return new Date(a.createdAt) < new Date(b.createdAt) ? 1 : -1;
 			});
 
-			//文字题总是在前
+			//先出的题目在下面
 			questions.forEach(item => {
-				const textArr = item.qts.filter(_item => _item.type != 'image');
-				const imageArr = item.qts.filter(_item => _item.type == 'image');
-
-				item.qts = [...textArr, ...imageArr];
+				item.qts.sort(function(a, b) {
+					return new Date(a.createdAt) < new Date(b.createdAt) ? 1 : -1;
+				});
 			});
 
 			this.setData({

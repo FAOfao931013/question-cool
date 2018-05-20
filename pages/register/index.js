@@ -160,9 +160,11 @@ Page({
 			return;
 		};
 
-		if (teacherItems.filter(item => item.checked).length == 0) {
-			app.showToast('fail', '请选择你的老师');
-			return;
+		if(!app.globalData.teacherUsername.includes(username)) {
+			if (teacherItems.filter(item => item.checked).length == 0) {
+				app.showToast('fail', '请选择你的老师');
+				return;
+			}
 		}
 
 		this.registerUser({
